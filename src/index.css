@@ -1,0 +1,7 @@
+@import url('remixicon/fonts/remixicon.css');
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
