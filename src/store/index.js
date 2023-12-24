@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import tokenUserLogin from "./slices/tokenUserLogin";
+import tokenUserSlice from "./slices/tokenUserSlice";
 
 export default configureStore({
     reducer: {
-        tokenUserLogin: tokenUserLogin,
+        tokenUser: tokenUserSlice,
     }
 })
 
