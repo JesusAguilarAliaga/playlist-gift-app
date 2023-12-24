@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { axiosPlaylist } from "../../utils/configAxios";
 
+const storageUser = localStorage.getItem("PLAYLIST_USER") 
+        ? JSON.parse(localStorage.getItem("PLAYLIST_USER")) 
+        : { email: "", name: "", token: "" }
+
 const tokenUserSlice = createSlice({
     name: "tokenUser",
-    initialState: {
-        email: "",
-        name: "",
-        token: "",
-    },
+    initialState: storageUser,
     reducers: {
         setTokenUser: (state, action) => {
             const newTokenUser = action.payload
+            localStorage.setItem("PLAYLIST_USER", JSON.stringify(newTokenUser))
             return {... state, ... newTokenUser}
         },
     },
 }) 
-
 
 const { setTokenUser } = tokenUserSlice.actions
 

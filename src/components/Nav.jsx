@@ -16,7 +16,7 @@ const Nav = () => {
       <div className="relative flex gap-8 max-sm:gap-2">
         <button onClick={() => setModalAccount(!modalAccount)} className={`w-[135px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec] outline-none ${modalAccount ? bg : ""}}`}>Mi CUENTA</button>
         <button onClick={() => setModalCreateList(!modalCreateList)} className={`h-[35px] px-5 flex items-center gap-2 border-[1px] border-[#edd641ec] rounded-[30px] outline-none ${modalCreateList ? bg : ""}`}><i className="ri-play-list-2-fill "></i> <p className="max-sm:hidden">GRABANDO</p> <span className="text-[#f68484]">{counter}</span></button>
-      { modalAccount && <PopUpAccount /> }
+      {modalAccount && <PopUpAccount />}
       {modalCreateList && <CreateListModal />}
       </div>
     </nav>
