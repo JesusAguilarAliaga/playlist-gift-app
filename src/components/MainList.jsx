@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react"
-import { axiosMusic } from "../utils/configAxios"
+import { axiosPlaylist } from "../utils/configAxios"
 import MainTrackList from "./MainTrackList"
 import SearchSetting from "./SearchSetting"
-import axios from "axios"
+import { useSelector } from "react-redux"
 
 /* {
-  name: "test",
-  email: "Jesus@test.com",
-  password: "test12345"
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMWNlZDFlLWE0ZjctNGE4Yi05MWIyLTFlN2RmOTZhOGIwNiIsImVtYWlsIjoiSmVzdXNAdGVzdC5jb20iLCJuYW1lIjoidGVzdCIsImlhdCI6MTcwMzI3MzYyMH0.VcK7rtAoj0yfydvnGRr1Y2aHimR1LeCFCeYdVfNCric"
+  Usuario de Jesus
+  enero@gmail.com
+  enero12345
 } */
-
-//token de prueba
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMWNlZDFlLWE0ZjctNGE4Yi05MWIyLTFlN2RmOTZhOGIwNiIsImVtYWlsIjoiSmVzdXNAdGVzdC5jb20iLCJuYW1lIjoidGVzdCIsImlhdCI6MTcwMzI3MzYyMH0.VcK7rtAoj0yfydvnGRr1Y2aHimR1LeCFCeYdVfNCric"
 
 
 const MainList = () => {
@@ -20,16 +16,14 @@ const MainList = () => {
   const [totalTracks, setTotalTracks] = useState("10")
   const [showSettings, setShowSettings] = useState(false)
   
-  console.log(tracksData)
+  const tokenUser = useSelector((store) => store.tokenUser)
+  console.log(tokenUser.token)
   
 
   useEffect(() => {
-    //hacer la peticion axios con tu token, ya que este token fue creado en mi base de datos
-
-
-    axiosMusic.get("/api/tracks/recommendations?seed_genres=reggaeton", {
+    axiosPlaylist.get("/api/tracks/recommendations?seed_genres=reggaeton", {
       headers: {
-        Authorization: `JWT ${token}`
+        Authorization: `JWT ${tokenUser.token}`
       }
     })
     .then(({ data }) => setTracksData(data.tracks))
@@ -41,9 +35,9 @@ const MainList = () => {
     e.preventDefault()
     let value = e.target.valueSearch.value
 
-    axiosMusic.get(`/api/tracks?limit=${totalTracks}&q=${value}`, {
+    axiosPlaylist.get(`/api/tracks?limit=${totalTracks}&q=${value}`, {
       headers: {
-        Authorization: `JWT ${token}`
+        Authorization: `JWT ${tokenUser.token}`
       }
     })
     .then(({ data }) => setTracksData(data.tracks.items))
