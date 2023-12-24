@@ -1,0 +1,29 @@
+.scene{
+  perspective: 800px;
+}
+
+.casette {
+  /* animation: rotate 10s infinite; */
+  transform-style: preserve-3d;
+  transition: transform 1s ease-in-out;
+}
+
+.backFace, .frontFace{
+  backface-visibility: hidden;
+}
+
+.frontFace{
+  transform: rotateY(0);
+}
+
+.backFace{
+  transform: rotateY(180deg);
+}
+
+
+/* .casette:hover{
+  transform: rotateY(180deg);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+} */
+
+

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { axiosMusic } from "../utils/configAxios"
 import MainTrackList from "./MainTrackList"
 import SearchSetting from "./SearchSetting"
+import axios from "axios"
 
 /* {
   name: "test",
@@ -24,6 +25,8 @@ const MainList = () => {
 
   useEffect(() => {
     //hacer la peticion axios con tu token, ya que este token fue creado en mi base de datos
+
+
     axiosMusic.get("/api/tracks/recommendations?seed_genres=reggaeton", {
       headers: {
         Authorization: `JWT ${token}`
