@@ -22,9 +22,6 @@ const MainList = () => {
   const [showSettings, setShowSettings] = useState(false)
   
   const tokenUser = useSelector((store) => store.tokenUser)
-  console.log(tokenUser.token)
-  
-
   useEffect(() => {
     //hacer la peticion axios con tu token, ya que este token fue creado en mi base de datos
     // axiosMusic.get("/api/tracks/recommendations?seed_genres=reggaeton", {
@@ -43,7 +40,6 @@ const MainList = () => {
     .catch(err => console.log(err))
   }, [])
 
-
   const onSubmit = (e) => {
     e.preventDefault()
     let value = e.target.valueSearch.value
@@ -56,7 +52,6 @@ const MainList = () => {
     .then(({ data }) => setTracksData(data.tracks.items))
     .catch(err => console.log(err))
   }
-
   
   return (
     <section className="max-w-[570px] mx-auto py-10 px-16 mt-28 flex flex-col gap-[50px] items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">
