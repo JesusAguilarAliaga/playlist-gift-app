@@ -1,5 +1,5 @@
-import MainList from "./MainList"
-import Nav from "./Nav"
+import MainList from "../components/MainList"
+import Nav from "../components/Nav"
 
 const Home = () => {
   return (
@@ -11,4 +11,5 @@ const Home = () => {
     </main>
   )
 }
+
 export default Home
