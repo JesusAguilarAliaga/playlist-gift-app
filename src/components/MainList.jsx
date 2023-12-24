@@ -12,8 +12,8 @@ import { useSelector } from "react-redux"
 
 //token de prueba
 // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMWNlZDFlLWE0ZjctNGE4Yi05MWIyLTFlN2RmOTZhOGIwNiIsImVtYWlsIjoiSmVzdXNAdGVzdC5jb20iLCJuYW1lIjoidGVzdCIsImlhdCI6MTcwMzI3MzYyMH0.VcK7rtAoj0yfydvnGRr1Y2aHimR1LeCFCeYdVfNCric"
-
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlYTJlODk2LTliZjYtNDU3MS1hODFiLWM0MDljYjUxMjM2ZSIsImVtYWlsIjoicGVkcm9AdGVzdC5jb20iLCJuYW1lIjoicGVkcm8iLCJpYXQiOjE3MDMzODM3NjN9.kjsx5d4HmpNnRT6dZDLX90zEmgw4cAwojbasgnJKtmM"
+// token Dergi API
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlYTJlODk2LTliZjYtNDU3MS1hODFiLWM0MDljYjUxMjM2ZSIsImVtYWlsIjoicGVkcm9AdGVzdC5jb20iLCJuYW1lIjoicGVkcm8iLCJpYXQiOjE3MDMzODM3NjN9.kjsx5d4HmpNnRT6dZDLX90zEmgw4cAwojbasgnJKtmM"
 
 
 const MainList = () => {
