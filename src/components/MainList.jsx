@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { axiosMusic } from "../utils/configAxios"
+import { axiosMusic, axiosPlaylist } from "../utils/configAxios"
 import MainTrackList from "./MainTrackList"
 import SearchSetting from "./SearchSetting"
 
@@ -11,7 +11,9 @@ import SearchSetting from "./SearchSetting"
 } */
 
 //token de prueba
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMWNlZDFlLWE0ZjctNGE4Yi05MWIyLTFlN2RmOTZhOGIwNiIsImVtYWlsIjoiSmVzdXNAdGVzdC5jb20iLCJuYW1lIjoidGVzdCIsImlhdCI6MTcwMzI3MzYyMH0.VcK7rtAoj0yfydvnGRr1Y2aHimR1LeCFCeYdVfNCric"
+// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMWNlZDFlLWE0ZjctNGE4Yi05MWIyLTFlN2RmOTZhOGIwNiIsImVtYWlsIjoiSmVzdXNAdGVzdC5jb20iLCJuYW1lIjoidGVzdCIsImlhdCI6MTcwMzI3MzYyMH0.VcK7rtAoj0yfydvnGRr1Y2aHimR1LeCFCeYdVfNCric"
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlYTJlODk2LTliZjYtNDU3MS1hODFiLWM0MDljYjUxMjM2ZSIsImVtYWlsIjoicGVkcm9AdGVzdC5jb20iLCJuYW1lIjoicGVkcm8iLCJpYXQiOjE3MDMzODM3NjN9.kjsx5d4HmpNnRT6dZDLX90zEmgw4cAwojbasgnJKtmM"
 
 
 const MainList = () => {
@@ -24,7 +26,14 @@ const MainList = () => {
 
   useEffect(() => {
     //hacer la peticion axios con tu token, ya que este token fue creado en mi base de datos
-    axiosMusic.get("/api/tracks/recommendations?seed_genres=reggaeton", {
+    // axiosMusic.get("/api/tracks/recommendations?seed_genres=reggaeton", {
+    //   headers: {
+    //     Authorization: `JWT ${token}`
+    //   }
+    // })
+    // .then(({ data }) => setTracksData(data.tracks))
+    // .catch(err => console.log(err))
+    axiosPlaylist.get("/api/tracks/recommendations?seed_genres=reggaeton", {
       headers: {
         Authorization: `JWT ${token}`
       }
