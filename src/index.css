@@ -9,3 +9,16 @@
 body {
     background: #000;
 }
+
+.textareaScroll::-webkit-scrollbar {
+    width: 4px; 
+}
+
+.textareaScroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.textareaScroll::-webkit-scrollbar-thumb {
+    background: #a7a7a7;
+    border-radius: 5px;
+}

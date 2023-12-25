@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { axiosPlaylist } from "../utils/configAxios"
+import { axiosMusic, axiosPlaylist } from "../utils/configAxios"
 import MainTrackList from "./MainTrackList"
 import SearchSetting from "./SearchSetting"
 import { useSelector } from "react-redux"
@@ -17,7 +17,7 @@ const MainList = () => {
   const [showSettings, setShowSettings] = useState(false)
   
   const tokenUser = useSelector((store) => store.tokenUser)
-  console.log(tokenUser.token)
+  console.log(tracksData)
   
 
   useEffect(() => {

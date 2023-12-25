@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn"
 import RegisterUser from "./pages/RegisterUser"
 import Home from "./pages/Home"
 import PageNotFound from "./pages/PageNotFound"
+import CreatePlaylist from "./pages/CreatePlaylist"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
             {/* Acá las rutas protegidas después del Sign In */}
             <Route element={<SignIn />} >
               <Route path="/home" element={<Home />} />
+              <Route path="/create-playlist" element={<CreatePlaylist />} />
               {/* <Route path="/playlist" element={<Playlist />} /> */}
             </Route>
             <Route path="*" element={<PageNotFound />} />

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { axiosPlaylist } from "../../utils/configAxios";
+import { axiosMusic, axiosPlaylist } from "../../utils/configAxios";
 
 const tokenUserSlice = createSlice({
     name: "tokenUser",
@@ -22,6 +22,7 @@ const { setTokenUser } = tokenUserSlice.actions
 export default tokenUserSlice.reducer
 
 export const login = (data, navigateTo) => (dispatch) => {
+    // axiosPlaylist
     axiosPlaylist
         .post("/api/auth/login", data)
         .then(({data}) => {
