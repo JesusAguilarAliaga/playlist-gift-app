@@ -4,7 +4,7 @@ import PopUpHover from "./PopUpHover";
 import { useDispatch } from "react-redux";
 import { removeToList } from "../store/slices/addedList";
 
-const CreateListTracks = ({track}) => {
+const EditSectionTrack = ({track}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [textPopup, setTextPopup] = useState("");
   const distpatch = useDispatch();
@@ -48,4 +48,4 @@ const CreateListTracks = ({track}) => {
     </li>
   );
 };
-export default CreateListTracks;
+export default EditSectionTrack;

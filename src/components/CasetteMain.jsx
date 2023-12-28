@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDataInput } from "../store/slices/inputTitleCasette";
 import { setNameCasette } from "../store/slices/inputNameCasette";
 import { setMessageCasette } from "../store/slices/inputMessageCasette";
+import ButtonsCasette from "./ButtonsCasette";
+
 
 const CasetteMain = ({ changeSide, setChangeSide }) => {
   const inputNameCasette =useSelector((store) => store.inputNameCasette)
@@ -62,12 +64,13 @@ const CasetteMain = ({ changeSide, setChangeSide }) => {
               src="/images/reel.svg"
               alt="reel"
             />
+            <ButtonsCasette />
           </div>
           <div className="backFace absolute h-full w-full">
             <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
-              alt=""
+              alt="casette"
             />
             <div className="flex items-center absolute top-[25px] left-[29px] z-10 h-[40px] w-[280px] rounded-[4px] px-2 bg-[#d9d9d9] font-semibold">
               <input

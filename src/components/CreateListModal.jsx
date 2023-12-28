@@ -1,12 +1,26 @@
 import { useState } from "react";
 import CasetteSmall from "./CasetteSmall";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalTrackList from "./ModalTrackList";
-import { Link } from "react-router-dom";
+import { fetchCreate } from "../store/slices/fetchCrud";
 
 const CreateListModal = () => {
-  const addedList =useSelector((store) => store.addedList)
-  console.log(addedList)
+  const inputNameCasette = useSelector((store) => store.inputNameCasette)
+  const inputTitleCasette = useSelector((store) => store.inputTitleCasette)
+  const inputMessageCasette = useSelector((store) => store.inputMessageCasette)
+  const tokenUser =useSelector((store) => store.tokenUser)
+  const addedList = useSelector((store) => store.addedList)
+  const dispatch = useDispatch()
+
+
+  const idTracks = addedList.map((track) => ({"id": track.id}))
+  const token = tokenUser.token
+  const data = {
+    "title": inputTitleCasette,
+    "message": inputMessageCasette,
+    "to": inputNameCasette,
+    "tracks": idTracks
+  }
 
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -18,9 +32,7 @@ const CreateListModal = () => {
           <ModalTrackList key={track.id} track={track}/>
         ))}
       </ul>
-      <Link to={"/create-playlist"}>
-        <button  className="mt-4 w-[136px] h-[37px] border-2 rounded-[33px]" type="button">CREAR</button>
-      </Link>
+      <button onClick={() => dispatch(fetchCreate(data, token))}  className="mt-4 w-[136px] h-[37px] border-2 rounded-[33px]" type="button">CREAR</button>
     </section>
   )
 }

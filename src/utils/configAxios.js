@@ -9,8 +9,9 @@ export {axiosPlaylist}
 
 
 // URL de despliegue de Jesús Aguilar
+
 const axiosMusic = axios.create({
-    baseURL: "https://backend-final-project-dev-mzps.3.us-1.fl0.io/",
+    baseURL: "https://backend-final-project-dev-mzps.3.us-1.fl0.io",
    //baseURL: "https://playlist-share.2.us-1.fl0.io/",
 })
 

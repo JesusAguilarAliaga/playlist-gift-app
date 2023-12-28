@@ -4,6 +4,9 @@ import addedList from "./slices/addedList";
 import inputTitleCasette from "./slices/inputTitleCasette";
 import inputNameCasette from "./slices/inputNameCasette";
 import inputMessageCasette from "./slices/inputMessageCasette";
+import fetchCrud from "./slices/fetchCrud";
+import newUserModal from "./slices/newUserModal";
+import deleteModal from "./slices/deleteModal";
 
 export default configureStore({
     reducer: {
@@ -12,5 +15,8 @@ export default configureStore({
         inputTitleCasette: inputTitleCasette,
         inputNameCasette: inputNameCasette,
         inputMessageCasette: inputMessageCasette,
+        fetchCrud: fetchCrud,
+        newUserModal: newUserModal,
+        deleteModal: deleteModal,
     }
 })

@@ -5,8 +5,6 @@ import { setDataInput } from "../store/slices/inputTitleCasette";
 const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
   const distpatch = useDispatch();
   const inputTitleCasette = useSelector((store) => store.inputTitleCasette);
-  //const [backInput, setBackInput] = useState("");
-  
   
   const handleFrontInputChange = (e) => {
     let value = e.target.value
@@ -51,7 +49,7 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
             <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
-              alt=""
+              alt="casette"
             />
             <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
             <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />

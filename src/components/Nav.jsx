@@ -33,7 +33,7 @@ const Nav = () => {
   }, [addedList])
 
   return (
-    <nav className="w-full flex justify-between items-center px-20 h-[69px] bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] font-semibold max-lg:px-10 max-sm:px-4"> 
+    <nav className="sticky top-0 z-30 w-full flex justify-between items-center px-20 h-[69px] bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] font-semibold max-lg:px-10 max-sm:px-4 backdrop-blur-3xl"> 
       <Link to={"/home"}>
         <h2>GIFT MUSIC</h2>
       </Link>
