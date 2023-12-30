@@ -1,26 +1,57 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CasetteMain from "./CasetteMain"
-import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate, useParams } from "react-router-dom"
 import EditSectionTrack from "./EditSectionTrack"
+import { RiArrowLeftLine, RiArrowLeftRightLine } from "@remixicon/react"
+import { axiosMusic } from "../utils/configAxios"
+import { setDataInput } from "../store/slices/inputTitleCasette"
+import { setNameCasette } from "../store/slices/inputNameCasette"
+import { setMessageCasette } from "../store/slices/inputMessageCasette"
+import Loader from "./Loader"
 
 const EditSection = () => {
+  const navigate = useNavigate()
   const [changeSide, setChangeSide] = useState(false)
+  const [tracks, setTracks] = useState([])
+  const [loader, setLoader] = useState(false)
+  const token = useSelector((store) => store.tokenUser.token)
+  const stateUpdate = useSelector((store) => store.fetchCrud.editSuccess)  //añadir a la dependencia del useEffect si se quiere una carga al actualizar
+  const { id } = useParams()
+  const dispatch = useDispatch()
 
-  const addedList = useSelector((store) => store.addedList)
+
+  useEffect(() => {
+    setLoader(true)
+    axiosMusic.get(`/api/playlists/${id}`, {
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+    .then(({data}) => {
+      setTracks(data.tracks)
+      dispatch(setDataInput(data.title))
+      dispatch(setNameCasette(data.to))
+      dispatch(setMessageCasette(data.message))
+    })
+    .catch(err => console.log(err))
+    .finally(() => setLoader(false))
+  }, [ id ])
+
 
   return (
-    <section className="relative max-w-[570px] mx-auto py-10 px-16 mt-[65px] flex flex-col gap-[25px] items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">
-      <Link to={"/home"}>
-        <button className="absolute top-4 left-4 px-3 h-[37px] border-2 rounded-[33px] text-center hover:bg-[#A284F6] hover:border-transparent" type="button"><i className="ri-arrow-left-line"></i> Atras</button>
-      </Link>
-      <CasetteMain changeSide={changeSide} setChangeSide={setChangeSide} />
-      <button className=" flex  items-center justify-around mb-4 px-3 gap-2 w-[136px] h-[37px] border-2 rounded-[33px]" onClick={() => setChangeSide(!changeSide)}>{changeSide ? "LADO A" : "LADO B"}<i className="ri-arrow-left-right-line text-[20px]"></i></button>
+    <section className="relative max-w-[570px] mx-auto pt-16 pb-10 px-16 mt-[65px] flex flex-col gap-[25px] items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">
+      <button onClick={() => navigate(-1)} className="absolute top-4 left-4 px-3 h-[37px] border-2 rounded-[33px] flex items-center hover:bg-[#A284F6] hover:border-transparent" type="button"><RiArrowLeftLine className="ri-arrow-left-line"/> Atras</button>
+      {loader ? <Loader /> 
+      :<>
+      <CasetteMain changeSide={changeSide} setChangeSide={setChangeSide} id={id}/>
+      <button className=" flex  items-center justify-around mb-4 px-3 gap-2 w-[136px] h-[37px] border-2 rounded-[33px]" onClick={() => setChangeSide(!changeSide)}>{changeSide ? "LADO A" : "LADO B"}<RiArrowLeftRightLine className="size-[20px]"/></button>
       <ul className="w-full flex flex-col gap-[20px]">
-      {addedList.map((track) => (
+      {tracks.map((track) => (
         <EditSectionTrack key={track.id} track={track} />
       ))}
-    </ul>
+      </ul>
+      </>}
     </section>
     
   )

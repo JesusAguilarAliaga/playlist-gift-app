@@ -4,9 +4,10 @@ import { setDataInput } from "../store/slices/inputTitleCasette";
 import { setNameCasette } from "../store/slices/inputNameCasette";
 import { setMessageCasette } from "../store/slices/inputMessageCasette";
 import ButtonsCasette from "./ButtonsCasette";
+import { RiPencilLine } from "@remixicon/react";
 
 
-const CasetteMain = ({ changeSide, setChangeSide }) => {
+const CasetteMain = ({ changeSide, setChangeSide, id }) => {
   const inputNameCasette =useSelector((store) => store.inputNameCasette)
   const inputTitleCasette = useSelector((store) => store.inputTitleCasette)
   const inputMessageCasette = useSelector((store) => store.inputMessageCasette)
@@ -52,7 +53,7 @@ const CasetteMain = ({ changeSide, setChangeSide }) => {
                 className="w-full h-full bg-transparent outline-none"
                 onChange={handleTitleInputChange}
               />
-              <i className="ri-pencil-line text-[20px]"></i>
+              <RiPencilLine/>
             </div>
             <img
               className="absolute top-[85px] left-[75px] size-[55px] animate-spin"
@@ -64,7 +65,7 @@ const CasetteMain = ({ changeSide, setChangeSide }) => {
               src="/images/reel.svg"
               alt="reel"
             />
-            <ButtonsCasette />
+            <ButtonsCasette id={id}/>
           </div>
           <div className="backFace absolute h-full w-full">
             <img
@@ -80,7 +81,7 @@ const CasetteMain = ({ changeSide, setChangeSide }) => {
                 className="w-full h-full bg-transparent outline-none"
                 onChange={handleNameInputChange}
               />
-              <i className="ri-pencil-line text-[20px]"></i>
+              <RiPencilLine/>
             </div>
             <div className="flex absolute top-[75px] left-[29px] z-10 h-[155px] w-[280px] rounded-[4px] px-2 bg-[#d9d9d9] font-semibold">
               <textarea
@@ -90,7 +91,7 @@ const CasetteMain = ({ changeSide, setChangeSide }) => {
                 className="textareaScroll resize-none w-full h-full bg-transparent outline-none pr-2"
                 onChange={handleMessageInputChange}
               />
-              <i className="ri-pencil-line text-[20px]"></i>
+              <RiPencilLine/>
             </div>
           </div>
         </div>

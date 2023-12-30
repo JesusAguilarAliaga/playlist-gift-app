@@ -8,7 +8,7 @@ const DeleteModal = () => {
   const dispatch = useDispatch()
 
   const handleDeletePlaylist = () => {
-    //dispatch(fetchDelete(deleteId, token))      //descomentar cuando se tenga el id
+    dispatch(fetchDelete(deleteId, token))
     dispatch(setDeleteModal(false))
   }
 

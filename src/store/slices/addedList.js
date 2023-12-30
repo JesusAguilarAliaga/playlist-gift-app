@@ -15,10 +15,13 @@ const addedListSlice = createSlice({
         removeToList: (state, action) => {
             const itemToRemove = action.payload;
             return state.filter((item) => item.id !== itemToRemove.id);
+        },
+        resetAddedList: () => {
+            return [];
         }
     }
 })
 
-export const { adToList, removeToList } = addedListSlice.actions
+export const { adToList, removeToList, resetAddedList } = addedListSlice.actions
 
 export default addedListSlice.reducer

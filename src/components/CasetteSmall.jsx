@@ -1,19 +1,16 @@
 import "../styles/Casette.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setDataInput } from "../store/slices/inputTitleCasette";
+import { RiPencilLine } from "@remixicon/react";
+import { setTitle } from "../store/slices/inputsToCreate";
 
 const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
   const distpatch = useDispatch();
-  const inputTitleCasette = useSelector((store) => store.inputTitleCasette);
+  const inputTitleCasette = useSelector((store) => store.inputsToCreate.title);
   
   const handleFrontInputChange = (e) => {
     let value = e.target.value
-    distpatch(setDataInput(value))
+    distpatch(setTitle(value))
   };
-
-  /* const handleBackInputChange = (event) => {
-    setBackInput(event.target.value);
-  }; */
 
   const handleCardFlip = () => {
     setIsFlipped(!isFlipped);
@@ -40,7 +37,7 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
                 className="w-full h-full bg-transparent outline-none"
                 onChange={handleFrontInputChange}
               />
-              <i className="ri-pencil-line text-[20px]"></i>
+              <RiPencilLine/>
             </div>
             <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
             <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
@@ -53,22 +50,6 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
             />
             <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
             <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
-            {/* <div className="flex flex-col gap-4 items-center absolute top-5 left-6 z-10 h-[150px] w-[200px] rounded-sm font-semibold">
-              <input
-                type="text"
-                placeholder="PARA:"
-                value={backInput}
-                className="w-full h-[32px] bg-transparent outline-none  bg-white rounded-sm"
-                onChange={handleFrontInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Texto"
-                value=""
-                className="w-full h-[90px] bg-transparent outline-none  bg-white rounded-sm"
-                onChange={handleFrontInputChange}
-              />
-            </div> */}
           </div>
         </div>
       </div>

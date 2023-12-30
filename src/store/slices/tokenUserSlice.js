@@ -23,7 +23,7 @@ export default tokenUserSlice.reducer
 
 export const login = (data, navigateTo) => (dispatch) => {
     // axiosPlaylist
-    axiosPlaylist
+    axiosMusic
         .post("/api/auth/login", data)
         .then(({data}) => {
             dispatch(setTokenUser(data));

@@ -8,6 +8,7 @@ import PlaylistPublic from "./pages/PlaylistPublic"
 import EditPlaylist from "./components/EditPlaylist"
 import TracksInfo from "./pages/TracksInfo"
 import ArtistsInfo from "./pages/ArtistsInfo"
+import Playlist from "./pages/Playlist"
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
             {/* Acá las rutas protegidas después del Sign In */}
             <Route element={<SignIn />} >
               <Route path="/home" element={<Home />} />
-              <Route path="/playlistID" element={<EditPlaylist />} /> {/*reemplazar id por /:id*/}
+              <Route path="/playlist" element={<Playlist />} />
+              <Route path="/playlist/:id" element={<EditPlaylist />} /> {/*reemplazar id por /:id*/}
               <Route path="/tracks/:id" element={<TracksInfo />} />
               <Route path="/artists/:id" element={<ArtistsInfo />} />
               {/* <Route path="/playlist" element={<Playlist />} /> */}

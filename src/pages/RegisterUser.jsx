@@ -15,7 +15,7 @@ const RegisterUser = () => {
     console.log(data);
 
     //axiosPlaylist
-    axiosPlaylist
+    axiosMusic
         .post("/api/auth/register", data)
         .then(({data}) => {
           console.log(data.message);

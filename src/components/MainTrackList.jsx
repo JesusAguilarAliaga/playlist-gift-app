@@ -4,13 +4,12 @@ import { formatArtists } from "../utils/FormatArtists"
 import { useDispatch } from "react-redux"
 import { adToList } from "../store/slices/addedList"
 import { Link } from "react-router-dom"
+import { RiAddCircleLine, RiPlayFill } from "@remixicon/react"
 
 const MainTrackList = ({track}) => {
   const [showPopup, setShowPopup] = useState(false)
   const [textPopup ,setTextPopup] = useState("")
   const distpatch = useDispatch()
-
-  //console.log(track)
 
   const handleAddTrack = () => {
     distpatch(adToList(track))
@@ -21,7 +20,8 @@ const MainTrackList = ({track}) => {
     setShowPopup(true)
   }
 
-  //console.log(formatArtists(track.artists).split(","))
+  const artistsName = formatArtists(track.artists).slice(0, 2)
+  const lastName = formatArtists(track.artists).slice(2)
 
 
   return (
@@ -29,10 +29,15 @@ const MainTrackList = ({track}) => {
       <Link to={`/tracks/${track.id}`}><img className="size-[60px] rounded-lg" src={track.album.images[2]?.url} alt="img" /></Link>
       <div className="flex-1">
         <Link to={`/tracks/${track.id}`}><h5 className="text-[15px] max-w-[270px] font-semibold truncate overflow-hidden max-sm:max-w-[140px] max-sm:w-[140px] hover:underline">{track.name}</h5></Link>
-        <p className="text-[13px] max-w-[270px] opacity-40 truncate overflow-hidden max-sm:max-w-[140px] max-sm:w-[140px] ">{formatArtists(track.artists)}</p>
+        <p className="text-[13px] max-w-[270px] opacity-40 truncate overflow-hidden max-sm:max-w-[140px] max-sm:w-[140px] ">
+          {artistsName.map((artist, index) => (
+            <Link to={`/artists/${artist.id}`} key={artist.name}><span className="hover:underline">{index > 0 ? `, ${artist.name}` : artist.name}</span></Link>
+          ))}
+          <span>{lastName[0]?.name !== undefined ? `, ${lastName[0]?.name}` : ""}</span>
+        </p>
       </div>
-      <i className="ri-play-fill text-[22px] relative" onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)}></i>
-      <i className="ri-add-circle-line text-[22px] mr-2" onClick={handleAddTrack} onMouseEnter={() => onMouseEnter("Agregar a lista")} onMouseLeave={() => setShowPopup(false)}></i>
+      <RiPlayFill className="text-[22px] relative" onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)}></RiPlayFill>
+      <RiAddCircleLine className="text-[22px] mr-2" onClick={handleAddTrack} onMouseEnter={() => onMouseEnter("Agregar a lista")} onMouseLeave={() => setShowPopup(false)}/>
       {showPopup && <PopUpHover popupText={textPopup}/>}
     </li>
   )

@@ -7,6 +7,7 @@ import { setDataInput } from "../store/slices/inputTitleCasette"
 import { setNameCasette } from "../store/slices/inputNameCasette"
 import { setMessageCasette } from "../store/slices/inputMessageCasette"
 import NewUserModal from "../components/publicComponents/NewUserModal"
+import { axiosMusic } from "../utils/configAxios"
 
 //eab59f6f-1448-4f71-b48c-672d16456de6          id  
 
@@ -17,32 +18,19 @@ const PlaylistPublic = () => {
   const dispatch =useDispatch()
   const { id } = useParams()
 
-  console.log(publicData)
-
   useEffect(() => {
     setLoading(true)
-    const dataFetch = async () => {
-      try {
-        const response = await fetch("https://backend-final-project-dev-mzps.3.us-1.fl0.io/api/playlists/" + id)
-        const data = await response.json()
-        setDataPublic(data)
-      } 
-      catch (error) {
-        console.error(error)
-      }
-      finally {
-        setLoading(false)
-      }
-    }
-
-    dataFetch()
+    axiosMusic.get("/api/playlists/" + id)
+    .then(({ data }) => setDataPublic(data))
+    .catch(err => console.log(err))
+    .finally(() => setLoading(false))
 
     return () => {
       dispatch(setDataInput(""));
       dispatch(setNameCasette("PARA:"));
       dispatch(setMessageCasette("MENSAJE:"));
     }
-  }, [])
+  }, [ id ])
 
 
   return (
