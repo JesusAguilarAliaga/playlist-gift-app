@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { axiosPlaylist } from "../../utils/configAxios";
 
+const initialState = { email: "", name: "", token: "" }
+
 const storageUser = localStorage.getItem("PLAYLIST_USER") 
         ? JSON.parse(localStorage.getItem("PLAYLIST_USER")) 
-        : { email: "", name: "", token: "" }
+        : initialState
 
 const tokenUserSlice = createSlice({
     name: "tokenUser",
@@ -14,10 +16,14 @@ const tokenUserSlice = createSlice({
             localStorage.setItem("PLAYLIST_USER", JSON.stringify(newTokenUser))
             return {... state, ... newTokenUser}
         },
+        logout: () => {
+            localStorage.removeItem("PLAYLIST_USER")
+            return initialState
+        }
     },
 }) 
 
-const { setTokenUser } = tokenUserSlice.actions
+export const { setTokenUser, logout } = tokenUserSlice.actions
 
 export default tokenUserSlice.reducer
 
