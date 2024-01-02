@@ -1,88 +1,98 @@
-import { useState } from "react";
 import "../styles/Casette.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setDataInput } from "../store/slices/inputTitleCasette";
+import { setNameCasette } from "../store/slices/inputNameCasette";
+import { setMessageCasette } from "../store/slices/inputMessageCasette";
+import ButtonsCasette from "./ButtonsCasette";
+import { RiPencilLine } from "@remixicon/react";
 
-const CasetteMain = ({ isFlipped, setIsFlipped }) => {
-  const [frontInput, setFrontInput] = useState("");
-  const [backInput, setBackInput] = useState("");
 
-  const handleFrontInputChange = (event) => {
-    setFrontInput(event.target.value);
+const CasetteMain = ({ changeSide, setChangeSide, id }) => {
+  const inputNameCasette =useSelector((store) => store.inputNameCasette)
+  const inputTitleCasette = useSelector((store) => store.inputTitleCasette)
+  const inputMessageCasette = useSelector((store) => store.inputMessageCasette)
+  const dispatch = useDispatch()
+
+  const handleTitleInputChange = (e) => {
+    let value = e.target.value
+    dispatch(setDataInput(value))
   };
 
-  const handleBackInputChange = (event) => {
-    setBackInput(event.target.value);
+  const handleNameInputChange = (e) => {
+    let value = e.target.value
+    dispatch(setNameCasette(value))
   };
+
+  const handleMessageInputChange = (e) => {
+    let value = e.target.value
+    dispatch(setMessageCasette(value))
+  }
 
   const handleCardFlip = () => {
-    setIsFlipped(!isFlipped);
+    setChangeSide(!changeSide);
   };
 
   return (
     <>
-      <div className="scene w-[250px] h-[190px] text-black">
+      <div className="scene w-[340px] h-[250px] text-black">
         <div
           className="casette select-none relative w-full h-full"
-          style={{ transform: isFlipped ? "rotateY(180deg)" : "" }}
+          style={{ transform: changeSide ? "rotateY(180deg)" : "" }}
         >
           <div className="frontFace absolute h-full w-full">
             <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
-              alt=""
+              alt="casette"
             />
-            <div className="flex items-center absolute top-5 left-6 z-10 h-[32px] w-[200px] rounded-sm px-2 bg-white font-semibold">
+            <div className="flex items-center absolute top-[25px] left-[29px] z-10 h-[40px] w-[280px] rounded-[4px] px-2 bg-[#D9d9d9] font-semibold">
               <input
                 type="text"
                 placeholder="TITULO"
-                value={frontInput}
+                value={inputTitleCasette}
                 className="w-full h-full bg-transparent outline-none"
-                onChange={handleFrontInputChange}
+                onChange={handleTitleInputChange}
               />
-              <i className="ri-pencil-line text-[20px]"></i>
+              <RiPencilLine/>
             </div>
             <img
-              className="absolute top-[63px] left-[56px] size-[40px] animate-spin"
+              className="absolute top-[85px] left-[75px] size-[55px] animate-spin"
               src="/images/reel.svg"
-              alt=""
+              alt="reel"
             />
             <img
-              className="absolute top-[63px] right-[58px] size-[40px] animate-spin"
+              className="absolute top-[85px] right-[78px] size-[55px] animate-spin"
               src="/images/reel.svg"
-              alt=""
+              alt="reel"
             />
+            <ButtonsCasette id={id}/>
           </div>
           <div className="backFace absolute h-full w-full">
             <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
-              alt=""
+              alt="casette"
             />
-            <img
-              className="absolute top-[63px] left-[56px] size-[40px] animate-spin"
-              src="/images/reel.svg"
-              alt=""
-            />
-            <img
-              className="absolute top-[63px] right-[58px] size-[40px] animate-spin"
-              src="/images/reel.svg"
-              alt=""
-            />
-            {/* <div className="flex flex-col gap-4 items-center absolute top-5 left-6 z-10 h-[150px] w-[200px] rounded-sm font-semibold">
+            <div className="flex items-center absolute top-[25px] left-[29px] z-10 h-[40px] w-[280px] rounded-[4px] px-2 bg-[#d9d9d9] font-semibold">
               <input
                 type="text"
                 placeholder="PARA:"
-                value={backInput}
-                className="w-full h-[32px] bg-transparent outline-none  bg-white rounded-sm"
-                onChange={handleFrontInputChange}
+                value={inputNameCasette}
+                className="w-full h-full bg-transparent outline-none"
+                onChange={handleNameInputChange}
               />
-              <input
+              <RiPencilLine/>
+            </div>
+            <div className="flex absolute top-[75px] left-[29px] z-10 h-[155px] w-[280px] rounded-[4px] px-2 bg-[#d9d9d9] font-semibold">
+              <textarea
                 type="text"
-                placeholder="Texto"
-                value=""
-                className="w-full h-[90px] bg-transparent outline-none  bg-white rounded-sm"
-                onChange={handleFrontInputChange}
+                placeholder="MENSAJE"
+                value={inputMessageCasette}
+                className="textareaScroll resize-none w-full h-full bg-transparent outline-none pr-2"
+                onChange={handleMessageInputChange}
               />
-            </div> */}
+              <RiPencilLine/>
+            </div>
           </div>
         </div>
       </div>

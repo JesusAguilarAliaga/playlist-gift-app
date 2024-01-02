@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { axiosPlaylist } from "../utils/configAxios";
+import { axiosMusic, axiosPlaylist } from "../utils/configAxios";
 import ContainerAuth from "../components/layouts/ContainerAuth";
 
 // const URL_API = "https://xtrem-party-dev-rgnq.3.us-1.fl0.io"
@@ -14,7 +14,8 @@ const RegisterUser = () => {
     const data = Object.fromEntries(formData);
     console.log(data);
 
-    axiosPlaylist
+    //axiosPlaylist
+    axiosMusic
         .post("/api/auth/register", data)
         .then(({data}) => {
           console.log(data.message);
