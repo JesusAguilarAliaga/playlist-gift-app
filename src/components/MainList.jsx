@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react"
-import { axiosMusic, axiosMusic, axiosPlaylist } from "../utils/configAxios"
+import { axiosMusic, axiosPlaylist } from "../utils/configAxios"
 import MainTrackList from "./MainTrackList"
 import SearchSetting from "./SearchSetting"
 import { useDispatch, useSelector } from "react-redux"
 import Loader from "./Loader"
 import { fetchGetAll } from "../store/slices/fetchCrud"
 import { RiCloseLine, RiListSettingsFill, RiSearchLine } from "@remixicon/react"
-//token de prueba
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMWNlZDFlLWE0ZjctNGE4Yi05MWIyLTFlN2RmOTZhOGIwNiIsImVtYWlsIjoiSmVzdXNAdGVzdC5jb20iLCJuYW1lIjoidGVzdCIsImlhdCI6MTcwMzI3MzYyMH0.VcK7rtAoj0yfydvnGRr1Y2aHimR1LeCFCeYdVfNCric"
-// token Dergi API
-// const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlYTJlODk2LTliZjYtNDU3MS1hODFiLWM0MDljYjUxMjM2ZSIsImVtYWlsIjoicGVkcm9AdGVzdC5jb20iLCJuYW1lIjoicGVkcm8iLCJpYXQiOjE3MDMzODM3NjN9.kjsx5d4HmpNnRT6dZDLX90zEmgw4cAwojbasgnJKtmM"
-
 
 const MainList = () => {
   const [tracksData, setTracksData] = useState([])
@@ -30,7 +25,7 @@ const MainList = () => {
     // .then(({ data }) => setTracksData(data.tracks))
     // .catch(err => console.log(err))
     //axiosPlaylist
-    axiosMusic.get("/api/tracks/recommendations?seed_genres=latino,reggaeton&limit=20", {
+    axiosPlaylist.get("/api/tracks/recommendations?seed_genres=latino,reggaeton&limit=20", {
       headers: {
         Authorization: `JWT ${tokenUser.token}`
       }
