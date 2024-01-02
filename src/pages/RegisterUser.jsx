@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { axiosMusic, axiosPlaylist } from "../utils/configAxios";
 import ContainerAuth from "../components/layouts/ContainerAuth";
 
-const URL_API = "https://xtrem-party-dev-rgnq.3.us-1.fl0.io"
+// const URL_API = "https://xtrem-party-dev-rgnq.3.us-1.fl0.io"
 
 const RegisterUser = () => {
 

@@ -32,7 +32,6 @@ const MainList = () => {
     }}))
   }, [])
 
-
   const onSubmit = (e) => {
     e.preventDefault()
     setLoader(true)
@@ -52,7 +51,6 @@ const MainList = () => {
   const handleClosePopups = () => {
     
   }
-
   
   return (
     <section onClick={handleClosePopups} className="max-w-[570px] mx-auto py-10 px-16 mt-[65px] flex flex-col gap-[50px] items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">

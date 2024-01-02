@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { logout } from "../store/slices/tokenUserSlice";
 import { RiLoginBoxLine, RiPlayFill } from "@remixicon/react"
 import { useEffect, useRef } from "react";
 
 const PopUpAccount = ({ modalAccount, setModalAccount }) => {
   const modalRef = useRef(null);
+  
+  const dispatch = useDispatch()
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
 
   useEffect(() => {
     // Función para cerrar el modal si se hace clic fuera de él
@@ -26,7 +34,9 @@ const PopUpAccount = ({ modalAccount, setModalAccount }) => {
       <Link to={"/playlist"}>
         <button className="flex w-full justify-between"><RiPlayFill /> MIS GRABACIONES</button>
       </Link>
-      <button className="flex w-full"><RiLoginBoxLine /> CERRAR SESION</button>
+      <Link to={"/"}>
+        <button onClick={handleLogout} className="flex w-full"><RiLoginBoxLine /> CERRAR SESION</button>
+      </Link>
     </section>
   )
 }
