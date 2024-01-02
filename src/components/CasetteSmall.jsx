@@ -1,16 +1,15 @@
-import { useState } from "react";
 import "../styles/Casette.css";
+import { useDispatch, useSelector } from "react-redux";
+import { RiPencilLine } from "@remixicon/react";
+import { setTitle } from "../store/slices/inputsToCreate";
 
 const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
-  const [frontInput, setFrontInput] = useState("");
-  const [backInput, setBackInput] = useState("");
-
-  const handleFrontInputChange = (event) => {
-    setFrontInput(event.target.value);
-  };
-
-  const handleBackInputChange = (event) => {
-    setBackInput(event.target.value);
+  const distpatch = useDispatch();
+  const inputTitleCasette = useSelector((store) => store.inputsToCreate.title);
+  
+  const handleFrontInputChange = (e) => {
+    let value = e.target.value
+    distpatch(setTitle(value))
   };
 
   const handleCardFlip = () => {
@@ -28,45 +27,29 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
             <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
-              alt=""
+              alt="casette"
             />
-            <div className="flex items-center absolute top-5 left-6 z-10 h-[32px] w-[200px] rounded-sm px-2 bg-white font-semibold">
+            <div className="flex items-center absolute top-5 left-6 z-10 h-[32px] w-[200px] rounded-sm px-2 bg-[#D9d9d9] font-semibold">
               <input
                 type="text"
                 placeholder="TITULO"
-                value={frontInput}
+                value={inputTitleCasette}
                 className="w-full h-full bg-transparent outline-none"
                 onChange={handleFrontInputChange}
               />
-              <i className="ri-pencil-line text-[20px]"></i>
+              <RiPencilLine/>
             </div>
-            <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="" />
-            <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="" />
+            <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
+            <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
           </div>
           <div className="backFace absolute h-full w-full">
             <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
-              alt=""
+              alt="casette"
             />
-            <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="" />
-            <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="" />
-            {/* <div className="flex flex-col gap-4 items-center absolute top-5 left-6 z-10 h-[150px] w-[200px] rounded-sm font-semibold">
-              <input
-                type="text"
-                placeholder="PARA:"
-                value={backInput}
-                className="w-full h-[32px] bg-transparent outline-none  bg-white rounded-sm"
-                onChange={handleFrontInputChange}
-              />
-              <input
-                type="text"
-                placeholder="Texto"
-                value=""
-                className="w-full h-[90px] bg-transparent outline-none  bg-white rounded-sm"
-                onChange={handleFrontInputChange}
-              />
-            </div> */}
+            <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
+            <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
           </div>
         </div>
       </div>
