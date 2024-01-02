@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeToList } from "../store/slices/addedList";
 import { Link } from "react-router-dom";
 import { RiIndeterminateCircleLine } from "@remixicon/react";
+import { motion } from "framer-motion";
 
 const ModalTrackList = ({ track }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -24,7 +25,7 @@ const ModalTrackList = ({ track }) => {
   const lastName = formatArtists(track.artists).slice(2)
 
   return (
-    <li className="relative w-full h-[60px] flex gap-3 justify-between items-center hover:bg-white/10 rounded-lg">
+    <motion.li layoutId={track.id} className="relative w-full h-[60px] flex gap-3 justify-between items-center hover:bg-white/10 rounded-lg">
       <Link to={`/tracks/${track.id}`}><img
         className="size-[60px] rounded-lg"
         src={track.album.images[2]?.url}
@@ -46,7 +47,7 @@ const ModalTrackList = ({ track }) => {
         onMouseLeave={() => setShowPopup(false)}
       ></RiIndeterminateCircleLine>
       {showPopup && <PopUpHover popupText={textPopup} />}
-    </li>
+    </motion.li>
   );
 };
 export default ModalTrackList;

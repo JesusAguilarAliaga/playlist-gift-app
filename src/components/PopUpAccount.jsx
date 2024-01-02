@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
 import { RiLoginBoxLine, RiPlayFill } from "@remixicon/react"
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { variants } from "../utils/variants";
+
+const { initial, animate, exit } = variants.popUpAccount
 
 const PopUpAccount = ({ modalAccount, setModalAccount }) => {
   const modalRef = useRef(null);
@@ -22,12 +26,12 @@ const PopUpAccount = ({ modalAccount, setModalAccount }) => {
   }, [modalAccount]);
 
   return (
-    <section ref={modalRef} className="absolute -left-[40px] top-[60px] w-[200px] h-[90px] flex flex-col gap-2 justify-center items-start px-4 bg-gradient-to-r from-[#886AE2] from-[43.66%] to-[#A284F6] to-[116.16%] rounded-md border-[1px] border-[#edd641ec]">
+    <motion.section initial={initial} animate={animate} exit={exit} ref={modalRef} className="-z-10 absolute -left-[40px] top-[60px] w-[200px] h-[90px] flex flex-col justify-center items-start bg-gradient-to-r from-[#886AE2] from-[43.66%] to-[#A284F6] to-[116.16%] rounded-md border-[1px] border-[#edd641ec] ">
       <Link to={"/playlist"}>
-        <button className="flex w-full justify-between"><RiPlayFill /> MIS GRABACIONES</button>
+        <button className="flex w-full py-[8px] px-4 justify-between hover:bg-white/20"><RiPlayFill /> MIS GRABACIONES</button>
       </Link>
-      <button className="flex w-full"><RiLoginBoxLine /> CERRAR SESION</button>
-    </section>
+      <button className="flex w-full py-[8px] px-4 hover:bg-white/20"><RiLoginBoxLine /> CERRAR SESION</button>
+    </motion.section>
   )
 }
 export default PopUpAccount

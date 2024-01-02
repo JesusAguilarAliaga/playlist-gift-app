@@ -2,6 +2,7 @@ import "../styles/Casette.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RiPencilLine } from "@remixicon/react";
 import { setTitle } from "../store/slices/inputsToCreate";
+import { motion } from "framer-motion";
 
 const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
   const distpatch = useDispatch();
@@ -18,7 +19,7 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
 
   return (
     <>
-      <div className="scene w-[250px] h-[190px] text-black">
+      <motion.div layoutId="casette" className="scene w-[250px] h-[190px] text-black">
         <div
           className="casette select-none relative w-full h-full"
           style={{ transform: isFlipped ? "rotateY(180deg)" : "" }}
@@ -52,7 +53,7 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
             <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -2,13 +2,16 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import ContainerAuth from "../components/layouts/ContainerAuth";
 import { login } from "../store/slices/tokenUserSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/Loader";
 
 const SignIn = () => {
   const dispatch = useDispatch();
 
   const navigateTo = useNavigate();
 
-  const tokenUser = useSelector((store) => store.tokenUser.token);
+  const loader = useSelector((store) => store.tokenUser.loader);
+
+  const tokenUser = useSelector((store) => store.tokenUser.tokenUser.token);
   if (tokenUser) {
     return <Outlet />;
   }
@@ -66,10 +69,12 @@ const SignIn = () => {
           </div>
           <button
             type="submit"
-            className="py-1 px-5 max-w-max border-1 border rounded-full m-2 uppercase bg-[#886AE2] mt-6 border-yellow-400/30
+            className="py-1 px-2 w-[135px] h-[35px] border-1 border rounded-full uppercase bg-[#886AE2] mt-6 border-yellow-400/30
                       hover:shadow-md hover:shadow-indigo-800 hover:transition-shadow hover:font-bold"
           >
-            Login
+            {loader ?
+            <Loader /> 
+            : "Login"}
           </button>
           <Link to="/register" className="border-b">
             Or register new account

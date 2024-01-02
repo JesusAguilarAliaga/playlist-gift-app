@@ -1,0 +1,70 @@
+.warningToast{
+    background: linear-gradient(to right, #787c008a, #6760448a);
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 500;
+    /* Agrega cualquier otro estilo personalizado que desees */
+}
+
+.warningToast .Toastify__progress-bar {
+    height: 2px;
+    filter: saturate(5);
+    background: #a28200;
+}
+
+.successToast{
+    background: linear-gradient(to right, #028e3c8a, #4168608a);
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 500;
+    /* Agrega cualquier otro estilo personalizado que desees */
+}
+
+.successToast .Toastify__progress-bar{
+    height: 2px;
+    filter: saturate(5);
+    background: #00a282;
+}
+
+.errorToast{
+    background: linear-gradient(to right, #7502028a, #6646468a);
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 500;
+}
+
+.errorToast .Toastify__progress-bar{
+    height: 2px;
+    filter: saturate(5);
+    background: #a20000;
+}
+
+.loadingToast{
+    background: linear-gradient(to right, #8888888a, #f8f8f88a);
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 500;
+}
+
+.infoToast{
+    background: linear-gradient(to right, #36527f8a, #4c5a978a);
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Urbanist", sans-serif;
+    font-weight: 500;
+}
+
+.infoToast .Toastify__progress-bar{
+    height: 2px;
+    filter: saturate(5);
+    background: #4c5a97;
+}

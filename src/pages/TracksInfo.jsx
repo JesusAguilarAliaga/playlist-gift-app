@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { axiosMusic, axiosPlaylist } from "../utils/configAxios"
 import { useSelector } from "react-redux"
 import Nav from "../components/Nav"
@@ -7,6 +7,7 @@ import Loader from "../components/Loader"
 import MainTrackList from "../components/MainTrackList"
 import TrackInformation from "../components/TrackInformation"
 import { RiArrowLeftLine } from "@remixicon/react"
+import { motion } from "framer-motion"
 
 const TracksInfo = () => {
   const [trackInfo, setTrackInfo] = useState({})
@@ -31,8 +32,8 @@ const TracksInfo = () => {
   return (
     <main className="min-h-screen w-full text-white font-urbanist font-normal">
       <Nav />
-      <article className="relative max-w-[570px] mx-auto pt-[70px] pb-8 px-[34px] mt-[65px] flex flex-col items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">
-        <button onClick={() => navigate(-1)} className="absolute flex items-center top-3 left-4 px-3 h-[37px] border-2 rounded-[33px] hover:bg-[#A284F6] hover:border-transparent" type="button"><RiArrowLeftLine className="ri-arrow-left-line"></RiArrowLeftLine> Atras</button>
+      <motion.article layout className="relative max-w-[570px] mx-auto pt-[70px] pb-8 px-[34px] mt-[65px] flex flex-col items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">
+        <motion.button layoutId="goBack" onClick={() => navigate(-1)} className="absolute flex items-center top-3 left-4 px-[10px] h-[32px] border-2 border-white/10 rounded-[33px] hover:bg-[#A284F6] hover:border-transparent" type="button"><RiArrowLeftLine className="ri-arrow-left-line"></RiArrowLeftLine> Atras</motion.button>
         {loader ? <Loader /> : 
         (<>
           <TrackInformation trackInfo={trackInfo} />
@@ -44,7 +45,7 @@ const TracksInfo = () => {
           </ul>
 
         </>)}
-      </article>
+      </motion.article>
       <div className="-z-10 absolute size-52 top-[60%] right-[25%] bg-[#FFE24B] blur-[140px]"></div>
       <div className="-z-10 absolute size-52 top-[75%] right-[5%] bg-[#C03EFE] blur-[140px]"></div>
     </main>

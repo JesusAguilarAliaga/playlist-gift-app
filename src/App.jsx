@@ -9,11 +9,16 @@ import EditPlaylist from "./components/EditPlaylist"
 import TracksInfo from "./pages/TracksInfo"
 import ArtistsInfo from "./pages/ArtistsInfo"
 import Playlist from "./pages/Playlist"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import "./index.css"
+import "./styles/toastify.css";
 
 function App() {
 
   return (
     <>
+      <ToastContainer />
         <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<SignIn />} />

@@ -5,7 +5,10 @@ import { setNameCasette } from "../store/slices/inputNameCasette";
 import { setMessageCasette } from "../store/slices/inputMessageCasette";
 import ButtonsCasette from "./ButtonsCasette";
 import { RiPencilLine } from "@remixicon/react";
+import { motion } from "framer-motion";
+import { variants } from "../utils/variants";
 
+const animate = variants.modal
 
 const CasetteMain = ({ changeSide, setChangeSide, id }) => {
   const inputNameCasette =useSelector((store) => store.inputNameCasette)
@@ -34,7 +37,7 @@ const CasetteMain = ({ changeSide, setChangeSide, id }) => {
 
   return (
     <>
-      <div className="scene w-[340px] h-[250px] text-black">
+      <motion.div layoutId="cassetteMain" variants={animate} initial="initial" animate="animate" exit="exit" className="scene w-[340px] h-[250px] text-black">
         <div
           className="casette select-none relative w-full h-full"
           style={{ transform: changeSide ? "rotateY(180deg)" : "" }}
@@ -95,7 +98,7 @@ const CasetteMain = ({ changeSide, setChangeSide, id }) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
