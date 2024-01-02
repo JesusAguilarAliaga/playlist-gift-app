@@ -16,16 +16,8 @@ const MainList = () => {
   const tokenUser = useSelector((store) => store.tokenUser)
 
   useEffect(() => {
-    //hacer la peticion axios con tu token, ya que este token fue creado en mi base de datos
-    // axiosMusic.get("/api/tracks/recommendations?seed_genres=reggaeton", {
-    //   headers: {
-    //     Authorization: `JWT ${token}`
-    //   }
-    // })
-    // .then(({ data }) => setTracksData(data.tracks))
-    // .catch(err => console.log(err))
     //axiosPlaylist
-    axiosPlaylist.get("/api/tracks/recommendations?seed_genres=latino,reggaeton&limit=20", {
+    axiosMusic.get("/api/tracks/recommendations?seed_genres=latino,reggaeton&limit=20", {
       headers: {
         Authorization: `JWT ${tokenUser.token}`
       }
