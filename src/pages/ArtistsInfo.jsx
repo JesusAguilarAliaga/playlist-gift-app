@@ -14,7 +14,7 @@ const ArtistsInfo = () => {
   const [trackInfo, setTrackInfo] = useState({})
   const [loader, setLoader] = useState(true)
   const navigate = useNavigate()
-  const token = useSelector((store) => store.tokenUser.token)
+  const token = useSelector((store) => store.tokenUser.tokenUser.token)
   const { id } = useParams()
   
   useEffect(() => {

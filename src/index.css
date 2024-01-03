@@ -48,3 +48,7 @@ body {
     color: #ffffff;
     text-shadow: 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
 }
+
+.neon-text2 {
+    text-shadow: 0 0 15px #ffdd1d;
+}

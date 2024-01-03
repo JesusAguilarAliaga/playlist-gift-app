@@ -24,9 +24,12 @@ const CasettesList = () => {
         <input onChange={onSubmit} className="flex-1 bg-transparent px-4 outline-none font-light" name="valueSearch" type="text" placeholder="Buscar" autoComplete="off"/>
       </div>
       <div  className="relative w-full" style={{ height: `${250 + casettes.length * 70}px` }}>
-        {filterCasettes.map((casette, index) => (
+      {casettes.length > 0 ?
+        filterCasettes.map((casette, index) => (
           <CasetteForList key={casette.id} casetteInfo={casette} index={index}/>
-        ))}
+        ))
+        : <p className="h-full w-full flex items-center justify-center text-lg bg-white/10 rounded-md text-center px-3">&quot;Aún no hay nada aquí, crea una playlist!&quot;</p>
+      }
       </div>
     </section>
   )

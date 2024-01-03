@@ -13,7 +13,7 @@ const TracksInfo = () => {
   const [trackInfo, setTrackInfo] = useState({})
   const [loader, setLoader] = useState(true)
   const navigate = useNavigate()
-  const token = useSelector((store) => store.tokenUser.token)
+  const token = useSelector((store) => store.tokenUser.tokenUser.token)
   const {id} = useParams()
 
   useEffect(() => {
@@ -39,9 +39,9 @@ const TracksInfo = () => {
           <TrackInformation trackInfo={trackInfo} />
           <h3 className="w-full text-left font-semibold text-[13px] mt-[45px] mb-[16px]">RECOMENDACIONES</h3>
           <ul className="w-full flex flex-col gap-[20px]">
-          {trackInfo.relatedSongs.map((track) => (
-            <MainTrackList key={track.id} track={track} />
-          ))}
+            {trackInfo.relatedSongs.map((track) => (
+              <MainTrackList key={track.id} track={track} />
+            ))}
           </ul>
 
         </>)}

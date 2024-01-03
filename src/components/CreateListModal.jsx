@@ -14,7 +14,7 @@ const CreateListModal = ({setModalCreateList, modalCreateList}) => {
   const inputNameCasette = useSelector((store) => store.inputsToCreate.name)
   const inputTitleCasette = useSelector((store) => store.inputsToCreate.title)
   const inputMessageCasette = useSelector((store) => store.inputsToCreate.message)
-  const tokenUser =useSelector((store) => store.tokenUser)
+  const tokenUser =useSelector((store) => store.tokenUser.tokenUser)
   const addedList = useSelector((store) => store.addedList)
   const loader = useSelector((store) => store.fetchCrud.loader)
   const modalRef = useRef(null)

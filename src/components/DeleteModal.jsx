@@ -8,7 +8,7 @@ import { variants } from "../utils/variants"
 const animate = variants.modalPublic
 
 const DeleteModal = () => {
-  const token = useSelector((store) => store.tokenUser.token)
+  const token = useSelector((store) => store.tokenUser.tokenUser.token)
   const deleteId = useSelector((store) => store.deleteModal.id)
   const navigate = useNavigate()
   const dispatch = useDispatch()

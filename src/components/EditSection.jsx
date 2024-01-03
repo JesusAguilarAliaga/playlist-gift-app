@@ -16,7 +16,7 @@ const EditSection = () => {
   const [changeSide, setChangeSide] = useState(false)
   const [tracks, setTracks] = useState([])
   const [loader, setLoader] = useState(false)
-  const token = useSelector((store) => store.tokenUser.token)
+  const token = useSelector((store) => store.tokenUser.tokenUser.token)
   const { id } = useParams()
   const dispatch = useDispatch()
 
