@@ -8,8 +8,7 @@ import { setNameCasette } from "../store/slices/inputNameCasette"
 import { setMessageCasette } from "../store/slices/inputMessageCasette"
 import NewUserModal from "../components/publicComponents/NewUserModal"
 import { axiosMusic } from "../utils/configAxios"
-
-//eab59f6f-1448-4f71-b48c-672d16456de6          id  
+import { AnimatePresence } from "framer-motion"
 
 const PlaylistPublic = () => {
   const [loading, setLoading] = useState(false)
@@ -39,7 +38,9 @@ const PlaylistPublic = () => {
       <SectionPublic publicData={publicData} loading={loading}/>
       <div className="-z-10 absolute size-52 top-[60%] right-[25%] bg-[#FFE24B] blur-[140px]"></div>
       <div className="-z-10 absolute size-52 top-[75%] right-[5%] bg-[#C03EFE] blur-[140px]"></div>
-      {newUserModal ? <NewUserModal /> : null}
+      <AnimatePresence>
+        {newUserModal ? <NewUserModal /> : null}
+      </AnimatePresence>
     </article>
   )
 }

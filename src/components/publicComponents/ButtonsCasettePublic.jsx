@@ -3,6 +3,7 @@ import PopUpHover2 from "../PopUpHover2"
 import { useDispatch } from "react-redux"
 import { setNewUserModal } from "../../store/slices/newUserModal"
 import { RiAddLine, RiShareLine } from "@remixicon/react"
+import { toastSuccess } from "../../utils/notifications"
 
 const ButtonsCasettePublic = () => {
   const [sharePopup, setSharePopup] = useState(false)
@@ -14,7 +15,7 @@ const ButtonsCasettePublic = () => {
     const urlToShare = window.location.href
 
     navigator.clipboard.writeText(urlToShare)
-    .then(() => console.log("url copiada"))
+    .then(() => toastSuccess("Link copiado al portapapeles"))
     .catch((err) => console.log("hubo un error al copiar" ,err))
   }
 

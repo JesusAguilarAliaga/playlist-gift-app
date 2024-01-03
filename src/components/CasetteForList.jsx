@@ -6,7 +6,7 @@ const CasetteForList = ({ casetteInfo, index }) => {
     <>
       <div
         className="left-[calc(50%-170px)] w-[340px] h-[250px] text-black absolute top-10"
-        style={{ transform: `translateY(${index * 70}px)`,  }}
+        style={{ transform: `translateY(${index * 70}px)`}}
       >
         <Link to={`/playlist/${casetteInfo.id}`}>
         <div className="frontFace absolute h-full w-full select-none hover:-translate-y-10 transition-all">

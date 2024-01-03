@@ -1,6 +1,10 @@
 import "../../styles/Casette.css";
+import { variants } from "../../utils/variants";
 import ButtonsCasettePublic from "./ButtonsCasettePublic";
+import { motion } from "framer-motion";
 
+
+const animation = variants.modal
 const CasettePublic = ({ changeSide, setChangeSide, publicData }) => {
 
 
@@ -10,7 +14,7 @@ const CasettePublic = ({ changeSide, setChangeSide, publicData }) => {
 
   return (
     <>
-      <div className="scene w-[340px] h-[250px] text-black">
+      <motion.div layoutId="casettePublic" variants={animation} initial="initial" animate="animate" className="scene w-[340px] h-[250px] text-black">
         <div
           className="casette select-none relative w-full h-full"
           style={{ transform: changeSide ? "rotateY(180deg)" : "" }}
@@ -56,7 +60,7 @@ const CasettePublic = ({ changeSide, setChangeSide, publicData }) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -5,8 +5,12 @@ import { useDispatch } from "react-redux";
 import { removeToList } from "../store/slices/addedList";
 import { Link } from "react-router-dom";
 import { RiIndeterminateCircleLine, RiPlayFill } from "@remixicon/react";
+import { motion } from "framer-motion";
+import { variants } from "../utils/variants";
 
-const EditSectionTrack = ({track}) => {
+const trackCasetteAnimate = variants.items
+
+const EditSectionTrack = ({track, index}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [textPopup, setTextPopup] = useState("");
   const distpatch = useDispatch();
@@ -24,7 +28,7 @@ const EditSectionTrack = ({track}) => {
   const lastName = formatArtists(track.artists).slice(2)
 
   return (
-    <li className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
+    <motion.li variants={trackCasetteAnimate} initial="hidden" animate="visible" exit="exit" custom={index} className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
       <img
         className="size-[60px] rounded-lg"
         src={track.album.images[2]?.url}
@@ -53,7 +57,7 @@ const EditSectionTrack = ({track}) => {
         onMouseLeave={() => setShowPopup(false)}
       />
       {showPopup && <PopUpHover popupText={textPopup} />}
-    </li>
+    </motion.li>
   );
 };
 export default EditSectionTrack;

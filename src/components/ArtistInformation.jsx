@@ -1,6 +1,10 @@
 import { RiHeartFill, RiHeartLine } from "@remixicon/react"
 import useNumberFormatter from "../hooks/useNumberFormatter"
 import usePopularityRange from "../hooks/usePopularityRange"
+import { motion } from "framer-motion"
+import { variants } from "../utils/variants"
+
+const animation = variants.modal
 
 const ArtistInformation = ({trackInfo}) => {
   const formattedNumber = useNumberFormatter(trackInfo.followers.total)
@@ -8,7 +12,7 @@ const ArtistInformation = ({trackInfo}) => {
 
   
   return (
-    <section className="w-full h-[247px] flex items-center gap-9 max-sm:flex-col max-sm:h-auto max-sm:items-center max-sm:gap-y-4">
+    <motion.section layoutId="artistInfo" variants={animation} initial="initial" animate="animate" className="w-full h-[247px] flex items-center gap-9 max-sm:flex-col max-sm:h-auto max-sm:items-center max-sm:gap-y-4">
       <img className="rounded-full size-[192px] object-cover object-top" src={trackInfo.images[1]?.url} alt="artist" />
       <div className="text-[15px] w-full h-full flex flex-col justify-center gap-y-3 max-sm:items-center max-w-[270px]">
         <h4 className="font-bold text-[20px]">{trackInfo.name}</h4>
@@ -32,7 +36,7 @@ const ArtistInformation = ({trackInfo}) => {
             </ul>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 export default ArtistInformation

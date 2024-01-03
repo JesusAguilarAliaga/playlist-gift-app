@@ -4,7 +4,10 @@ import CreateListModal from "./CreateListModal"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { RiPlayList2Fill } from "@remixicon/react"
+import { motion, AnimatePresence } from "framer-motion"
+import { variants } from "../utils/variants"
 
+const counterAnimate = variants.counter
 let bg = "bg-gradient-to-r  from-[#886AE2] from-[43.66%] to-[#A284F6] to-[116.16%]"
 
 const Nav = () => {
@@ -40,9 +43,17 @@ const Nav = () => {
         </Link>
         <div className="relative flex gap-8 max-sm:gap-2">
           <button onClick={handleModalAccount} className={`w-[135px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec] outline-none ${modalAccount ? bg : ""}}`}>Mi CUENTA</button>
-          <button onClick={handleModalCreateList} className={`h-[35px] px-5 flex items-center gap-2 border-[1px] border-[#edd641ec] rounded-[30px] outline-none ${modalCreateList ? bg : ""}`}><RiPlayList2Fill className="ri-play-list-2-fill "></RiPlayList2Fill> <p className="max-sm:hidden">GRABANDO</p> <span className="text-[#f68484] min-w-[20px] text-center">{counter}</span></button>
-        {modalAccount && <PopUpAccount setModalAccount={setModalAccount} modalAccount={modalAccount}/> }
-        {modalCreateList && <CreateListModal setModalCreateList={setModalCreateList} modalCreateList={modalCreateList}/>}
+          <button onClick={handleModalCreateList} className={`h-[35px] px-5 flex items-center gap-2 border-[1px] border-[#edd641ec] rounded-[30px] outline-none ${modalCreateList ? bg : ""}`}>
+            <RiPlayList2Fill className="ri-play-list-2-fill "/>
+            <p className="max-sm:hidden">GRABANDO</p>
+            <motion.span key={counter} variants={counterAnimate} initial="initial" animate="animate" className="neon-text min-w-[20px] text-center">{counter}</motion.span>
+          </button>
+          <AnimatePresence>
+            {modalAccount && <PopUpAccount setModalAccount={setModalAccount} modalAccount={modalAccount}/> }
+          </AnimatePresence>
+          <AnimatePresence>
+            {modalCreateList && <CreateListModal setModalCreateList={setModalCreateList} modalCreateList={modalCreateList}/>}
+          </AnimatePresence>
         </div>
       </div>
     </nav>

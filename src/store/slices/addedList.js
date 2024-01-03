@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toastError } from "../../utils/notifications";
 
 const addedListSlice = createSlice({
     name: "addedList",
@@ -7,9 +8,11 @@ const addedListSlice = createSlice({
         adToList: (state, action) => {
             const item = action.payload;
             const existingItem = state.find((existing) => existing.id === item.id);
-
+            
             if (!existingItem) {
                 state.push(item);
+            }else{
+                toastError("Ya existe en la lista");
             }
         },
         removeToList: (state, action) => {

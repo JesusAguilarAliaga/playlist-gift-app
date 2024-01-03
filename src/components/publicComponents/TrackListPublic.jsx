@@ -2,8 +2,12 @@ import { useState } from "react"
 import { formatArtists } from "../../utils/FormatArtists"
 import PopUpHover2 from "../PopUpHover2"
 import { RiPlayFill } from "@remixicon/react"
+import { motion } from "framer-motion"
+import { variants } from "../../utils/variants"
 
-const TrackListPublic = ({track}) => {
+const animation = variants.items
+
+const TrackListPublic = ({track, index}) => {
   const [showPopup, setShowPopup] = useState(false)
   const [textPopup ,setTextPopup] = useState("")
 
@@ -16,7 +20,7 @@ const TrackListPublic = ({track}) => {
 
 
   return (
-    <li className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
+    <motion.li variants={animation} initial="hidden" animate="visible" exit="exit" custom={index} className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
       <img className="size-[60px] rounded-lg" src={track.album.images[2]?.url} alt="img" />
       <div className="flex-1">
         <h5 className="text-[15px] max-w-[310px] font-semibold truncate overflow-hidden max-sm:max-w-[140px] max-sm:w-[140px]">{track.name}</h5>
@@ -27,7 +31,7 @@ const TrackListPublic = ({track}) => {
         </p>
       </div>
       <button onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)} className="text-[22px] relative pr-1">{showPopup && <PopUpHover2 popupText={textPopup}/>}<RiPlayFill /></button>
-    </li>
+    </motion.li>
   )
 }
 export default TrackListPublic

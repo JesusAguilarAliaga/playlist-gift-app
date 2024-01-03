@@ -1,4 +1,3 @@
-/* @import url('remixicon/fonts/remixicon.css'); */
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;300;400;600;700;800;900&display=swap');
 
 
@@ -6,12 +5,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* :root{
+    --toastify-color-error: #833ce7;
+    --toastify-text-color-light: #2b0fca;
+    --toastify-text-color-dark: #e60000;
+} */
+
+
 body {
     background: #000;
 }
 
 .textareaScroll::-webkit-scrollbar {
-    width: 4px; 
+    width: 4px;
 }
 
 .textareaScroll::-webkit-scrollbar-track {
@@ -26,7 +32,7 @@ body {
 
 /* scroll para el modal */
 .modalScroll::-webkit-scrollbar {
-    width: 3px; 
+    width: 3px;
 }
 
 .modalScroll::-webkit-scrollbar-track {
@@ -36,4 +42,9 @@ body {
 .modalScroll::-webkit-scrollbar-thumb {
     background: #cfcfcf;
     border-radius: 5px;
+}
+
+.neon-text {
+    color: #ffffff;
+    text-shadow: 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff, 0 0 1px #ffffff;
 }

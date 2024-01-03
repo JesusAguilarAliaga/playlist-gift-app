@@ -5,8 +5,12 @@ import { useDispatch } from "react-redux"
 import { adToList } from "../store/slices/addedList"
 import { Link } from "react-router-dom"
 import { RiAddCircleLine, RiPlayFill } from "@remixicon/react"
+import { motion } from "framer-motion"
+import { variants } from "../utils/variants"
 
-const MainTrackList = ({track}) => {
+const trackAnimate = variants.items
+
+const MainTrackList = ({track, index}) => {
   const [showPopup, setShowPopup] = useState(false)
   const [textPopup ,setTextPopup] = useState("")
   const distpatch = useDispatch()
@@ -25,7 +29,7 @@ const MainTrackList = ({track}) => {
 
 
   return (
-    <li className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
+    <motion.li variants={trackAnimate} initial="hidden" animate="visible" exit="exit" custom={index} className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
       <Link to={`/tracks/${track.id}`}><img className="size-[60px] rounded-lg" src={track.album.images[2]?.url} alt="img" /></Link>
       <div className="flex-1">
         <Link to={`/tracks/${track.id}`}><h5 className="text-[15px] max-w-[270px] font-semibold truncate overflow-hidden max-sm:max-w-[140px] max-sm:w-[140px] hover:underline">{track.name}</h5></Link>
@@ -39,7 +43,7 @@ const MainTrackList = ({track}) => {
       <RiPlayFill className="text-[22px] relative" onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)}></RiPlayFill>
       <RiAddCircleLine className="text-[22px] mr-2" onClick={handleAddTrack} onMouseEnter={() => onMouseEnter("Agregar a lista")} onMouseLeave={() => setShowPopup(false)}/>
       {showPopup && <PopUpHover popupText={textPopup}/>}
-    </li>
+    </motion.li>
   )
 }
 export default MainTrackList

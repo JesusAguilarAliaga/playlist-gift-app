@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { axiosMusic, axiosPlaylist } from "../../utils/configAxios";
 
+
 const initialState = { email: "", name: "", token: "" }
 
 const storageUser = localStorage.getItem("PLAYLIST_USER") 
@@ -37,6 +38,7 @@ export const login = (data, navigateTo) => (dispatch) => {
             navigateTo("/home");
         })
         .catch((err) => {
-            console.log(err);
-    }); 
+            console.log(err)
+    })
+    //.finally(() => dispatch(setLoader(false)))
 }

@@ -1,23 +1,21 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import PopUpHover2 from "./PopUpHover2"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchUpdate } from "../store/slices/fetchCrud"
 import { setDeleteId, setDeleteModal } from "../store/slices/deleteModal"
 import { RiDeleteBinLine, RiSave3Line, RiShareLine } from "@remixicon/react"
-import { useNavigate } from "react-router-dom"
+import { toastError, toastSuccess } from "../utils/notifications"
 
 const ButtonsCasette = ({id}) => {
   const inputNameCasette = useSelector((store) => store.inputNameCasette)
   const inputTitleCasette = useSelector((store) => store.inputTitleCasette)
   const inputMessageCasette = useSelector((store) => store.inputMessageCasette)
-  const stateDelete = useSelector((store) => store.fetchCrud.deleteSuccess)
   const tokenUser =useSelector((store) => store.tokenUser)
   const dispatch = useDispatch()
   const [textPopup, setTextPopup] = useState("")
   const [savePopup, setSavePopup] = useState(false)
   const [deletePopup, setDeletePopup] = useState(false)
   const [sharePopup, setSharePopup] = useState(false)
-  const navigate = useNavigate()
 
   const token = tokenUser.token
   const data = {
@@ -27,18 +25,13 @@ const ButtonsCasette = ({id}) => {
   }
 
 
-  useEffect(() => {
-    if(stateDelete === true) {
-      navigate(-1)
-    }
-  }, [stateDelete])
-
   const onClickShare = () => {
-    const urlToShare = window.location.href   //reemplazar por el id de esta lista
+    const urlToShare = window.location.origin  //reemplazar por el id de esta lista
+    const urlComplete = urlToShare + "/playlist/public/" + id
 
-    navigator.clipboard.writeText(urlToShare)
-    .then(() => console.log("url copiada"))
-    .catch((err) => console.log("hubo un error al copiar" ,err))
+    navigator.clipboard.writeText(urlComplete)
+    .then(() => toastSuccess("link copiado al portapapeles"))
+    .catch(() => toastError("Hubo un error, intentalo de nuevo"))
   }
 
   const onMouseEnter = (text, setPopup) => {
