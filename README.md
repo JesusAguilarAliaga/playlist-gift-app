@@ -1,8 +1,37 @@
-# React + Vite
+###`/playlists/:id`
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+-Página protegida para editar una lista de reproducción específica.
 
-Currently, two official plugins are available:
+![Página de Edición de Lista de Reproducción](./screenshots/edit-playlist.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+###`/playlists/public/:id`
+
+-Página pública para ver detalles de una lista de reproducción compartida.
+
+![Página de Lista de Reproducción Pública](./screenshots/public-playlist.png)
+
+##Colaboradores
+
+Este proyecto ha sido posible gracias a la contribución de:
+
+-[Jesús Aguilar](https://github.com/JesusAguilarAliaga)
+-[Dergi Samayoa](https://github.com/DergiSamayoa)
+-[Cristiano Sime](https://github.com/SimeneitorT1000)
+
+¡Agradecemos a todos por su valioso trabajo!
+
+##Librerías Utilizadas
+
+-[React](https://reactjs.org/)
+-[React Router](https://reactrouter.com/)
+-[Redux Toolkit](https://redux-toolkit.js.org/)
+-[Axios](https://axios-http.com/)
+-[Styled Components](https://styled-components.com/)
+
+##Contribuciones
+
+¡Contribuciones son bienvenidas! Si deseas mejorar este proyecto, siéntete libre de crear un Pull Request.
+
+##Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
