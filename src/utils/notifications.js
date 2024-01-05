@@ -5,7 +5,9 @@ export const toastWarning = (message) => {
         position: "top-left",
         className: "warningToast",
         theme: "dark",
-    })
+        draggable: false,
+    }
+    )
 }
 
 export const toastSuccess = (message) => {
@@ -13,6 +15,7 @@ export const toastSuccess = (message) => {
         position: "top-left",
         className: "successToast",
         theme: "dark",
+        draggable: false,
     })
 }
 
@@ -21,6 +24,7 @@ export const toastError = (message) => {
         position: "top-left",
         className: "errorToast",
         theme: "dark",
+        draggable: false,
     })
 }
 
@@ -29,6 +33,7 @@ export const toastLoading = (message) => {
         position: "top-left",
         className: "loadingToast",
         theme: "dark",
+        draggable: false,
     })
 }
 
@@ -37,5 +42,6 @@ export const toastInfo = (message) => {
         position: "top-left",
         className: "infoToast",
         theme: "dark",
+        draggable: false,
     })
 }

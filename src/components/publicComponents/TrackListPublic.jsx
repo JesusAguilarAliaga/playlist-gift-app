@@ -4,18 +4,34 @@ import PopUpHover2 from "../PopUpHover2"
 import { RiPlayFill } from "@remixicon/react"
 import { motion } from "framer-motion"
 import { variants } from "../../utils/variants"
+import { toastWarning } from "../../utils/notifications"
+import { resetMusic, setArtistsMusic, setExternalUrl, setMusicPlay, setNameMusic } from "../../store/slices/musicPlay"
+import { useDispatch } from "react-redux"
 
 const animation = variants.items
 
 const TrackListPublic = ({track, index}) => {
   const [showPopup, setShowPopup] = useState(false)
   const [textPopup ,setTextPopup] = useState("")
+  const dispatch = useDispatch()
 
   const artists = formatArtists(track.artists)
 
   const onMouseEnter = (text) => {
     setTextPopup(text)
     setShowPopup(true)
+  }
+
+  const handlePlay = () => {
+    if(track.preview_url === null){
+      toastWarning("Ups, parece que esta canción no tiene preview")
+      dispatch(resetMusic())
+      return
+    }
+    dispatch(setMusicPlay(track.preview_url))
+    dispatch(setNameMusic(track.name))
+    dispatch(setArtistsMusic(track.artists[0].name))
+    dispatch(setExternalUrl(track.external_urls.spotify))
   }
 
 
@@ -30,7 +46,7 @@ const TrackListPublic = ({track, index}) => {
           ))}
         </p>
       </div>
-      <button onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)} className="text-[22px] relative pr-1">{showPopup && <PopUpHover2 popupText={textPopup}/>}<RiPlayFill /></button>
+      <button onClick={handlePlay} onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)} className="text-[22px] relative pr-1">{showPopup && <PopUpHover2 popupText={textPopup}/>}<RiPlayFill /></button>
     </motion.li>
   )
 }

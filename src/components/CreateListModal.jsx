@@ -6,27 +6,37 @@ import { fetchCreate } from "../store/slices/fetchCrud";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
 import { variants } from "../utils/variants";
+import { toastWarning } from "../utils/notifications";
 
 
 const {initial, animate, exit} = variants.popUpList
 
 const CreateListModal = ({setModalCreateList, modalCreateList}) => {
-  const inputNameCasette = useSelector((store) => store.inputsToCreate.name)
-  const inputTitleCasette = useSelector((store) => store.inputsToCreate.title)
-  const inputMessageCasette = useSelector((store) => store.inputsToCreate.message)
-  const tokenUser =useSelector((store) => store.tokenUser.tokenUser)
+  const { title, to, message } = useSelector((store) => store.inputsToCreate)
   const addedList = useSelector((store) => store.addedList)
   const loader = useSelector((store) => store.fetchCrud.loader)
+  const [isFlipped, setIsFlipped] = useState(false);
   const modalRef = useRef(null)
   const dispatch = useDispatch()
 
   const idTracks = addedList.map((track) => ({"id": track.id}))
-  const token = tokenUser.token
   const data = {
-    "title": inputTitleCasette,
-    "message": inputMessageCasette,
-    "to": inputNameCasette,
+    "title": title,
+    "message": message,
+    "to": to,
     "tracks": idTracks
+  }
+
+  const handleCreateFetch = () => {
+    if(title === ""){
+      toastWarning("Ponle un nombre a tu playlist")
+    }else if (to, message === ""){
+      setIsFlipped(true)
+      toastWarning("Ponle un destinatario y un mensaje")
+    }
+    else{
+      dispatch(fetchCreate(data, setModalCreateList))
+    }
   }
 
 
@@ -47,7 +57,6 @@ const CreateListModal = ({setModalCreateList, modalCreateList}) => {
     };
   }, [modalCreateList]);
 
-  const [isFlipped, setIsFlipped] = useState(false);
   return (
     <motion.section initial={initial} animate={animate} exit={exit} layout ref={modalRef} className="z-20 absolute p-3 flex flex-col gap-[10px] items-center top-[75px] right-0 w-[270px] rounded-lg bg-[#A284F6] border-[1px] border-[#edd641ec]">
       <CasetteSmall isFlipped={isFlipped} setIsFlipped={setIsFlipped}/>
@@ -56,7 +65,7 @@ const CreateListModal = ({setModalCreateList, modalCreateList}) => {
           <ModalTrackList key={track.id} track={track}/>
         ))}
       </motion.ul>
-      <motion.button layoutId="button" onClick={() => dispatch(fetchCreate(data, token, setModalCreateList))}  className="mt-4 w-[136px] h-[37px] border-2 rounded-[33px]" type="button">{loader ? <Loader /> : "CREAR"}</motion.button>
+      <motion.button layoutId="button" onClick={handleCreateFetch}  className="mt-4 w-[136px] h-[37px] border-2 rounded-[33px]" type="button">{loader ? <Loader /> : "CREAR"}</motion.button>
     </motion.section>
   )
 }

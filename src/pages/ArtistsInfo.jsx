@@ -1,8 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import Nav from "../components/Nav"
 import { useEffect, useState } from "react"
-import { axiosMusic, axiosPlaylist } from "../utils/configAxios"
-import { useSelector } from "react-redux"
+import { axiosMusic } from "../utils/configAxios"
 import Loader from "../components/Loader"
 import ArtistInformation from "../components/ArtistInformation"
 import ArtistAlbums from "../components/ArtistAlbums"
@@ -14,17 +13,11 @@ const ArtistsInfo = () => {
   const [trackInfo, setTrackInfo] = useState({})
   const [loader, setLoader] = useState(true)
   const navigate = useNavigate()
-  const token = useSelector((store) => store.tokenUser.tokenUser.token)
   const { id } = useParams()
   
   useEffect(() => {
     setLoader(true)
-    axiosMusic.get(`api/artists/${id}/`,
-    {
-      headers: {
-        Authorization: `JWT ${token}`
-      }
-    })
+    axiosMusic.get(`api/artists/${id}/`)
     .then(({data}) => setTrackInfo(data))
     .catch(err => console.log(err))
     .finally(() => setLoader(false))
@@ -33,7 +26,7 @@ const ArtistsInfo = () => {
   return (
     <main className="min-h-screen w-full text-white font-urbanist font-normal">
       <Nav />
-      <motion.article layout className="relative max-w-[570px] mx-auto pt-[70px] pb-8 px-[34px] mt-[65px] flex flex-col items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:px-4">
+      <motion.article layout className="relative max-w-[570px] mx-auto pt-[70px] pb-8 px-[34px] mt-[65px] flex flex-col items-center rounded-lg bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] max-sm:mx-3 max-sm:mt-[20px] max-sm:px-4">
         <motion.button layoutId="buttonBackHome" onClick={() => navigate(-1)} className="absolute flex items-center top-3 left-4 px-[10px] h-[32px] border-2 border-white/10 rounded-[33px] hover:bg-[#A284F6] hover:border-transparent" type="button"><RiArrowLeftLine className="ri-arrow-left-line"></RiArrowLeftLine> Atras</motion.button>
         {loader ? <Loader /> : 
         (<>
