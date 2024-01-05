@@ -24,7 +24,7 @@ const ButtonsCasette = ({id}) => {
 
   const onClickShare = () => {
     const urlToShare = window.location.origin
-    const urlComplete = urlToShare + "/#/playlist/public/" + id
+    const urlComplete = urlToShare + "/playlist/public/" + id
 
     navigator.clipboard.writeText(urlComplete)
     .then(() => toastSuccess("link copiado al portapapeles"))
