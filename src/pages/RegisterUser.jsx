@@ -41,7 +41,7 @@ const RegisterUser = () => {
         />
       </aside>
       <main className="flex flex-col gap-4 h-[400px] justify-center">
-        <h2 className="uppercase text-[40px] font-semibold">Account</h2>
+        <h2 className="uppercase text-[40px] font-semibold">Cuenta Nueva</h2>
         <form onSubmit={handleSubmit}
             className="flex flex-col gap-6 justify-center items-center">
           <div className="grid gap-8 w-[350px]">
@@ -53,13 +53,13 @@ const RegisterUser = () => {
             </div>
             <div className="grid">
               <label htmlFor="name"
-                  className="text-stone-400 h-[25px] w-full" >Name</label>
+                  className="text-stone-400 h-[25px] w-full" >Nombre de usuario</label>
               <input type="text" name="name" id="name" autoComplete="off" required 
                   className="bg-transparent border-b border-yellow-400/30 outline-none w-full h-[30px] text-[20px]"/>
             </div>
             <div className="grid">
               <label htmlFor="password"
-                  className="text-stone-400 h-[25px] w-full">Password</label>
+                  className="text-stone-400 h-[25px] w-full">Contraseña</label>
               <input type="password" name="password" id="password" autoComplete="off" required 
                   className="bg-transparent border-b border-yellow-400/30 outline-none w-full h-[30px] text-[20px]"/>
             </div>
@@ -67,10 +67,10 @@ const RegisterUser = () => {
           <button type="submit"
                   className="py-1 px-2 w-[130px] h-[35px] border-1 border rounded-full uppercase bg-[#886AE2] border-yellow-400/30
                   hover:shadow-md hover:shadow-indigo-800 hover:transition-shadow hover:font-bold">
-            { loader ? <Loader /> : "Register" }
+            { loader ? <Loader /> : "Crear" }
           </button>
           <Link to="/login" className="border-b">
-            Or login to sign in
+            O iniciar sesión
           </Link>
         </form>
       </main>

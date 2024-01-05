@@ -7,9 +7,9 @@ const NavUnprotected = () => {
       <div className="w-full h-full max-w-[1440px] flex justify-between items-center">
       <h2>GIFT MUSIC</h2>
         <Link to="/login">
-          <button className="w-[100px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec]
+          <button className="w-[120px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec]
                   hover:bg-gradient-to-r  from-[#A284F6] from-[43.66%] to-[#A284F6] to-[116.16%] hover:border-transparent">
-              Sign in
+              Iniciar Sesión
           </button>
         </Link>
       </div>

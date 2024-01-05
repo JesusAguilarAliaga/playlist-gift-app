@@ -27,7 +27,7 @@ const SignIn = () => {
         />
       </aside>
       <main className="flex flex-col gap-4 h-[400px] justify-center">
-        <h2 className="uppercase text-[40px] font-semibold">Sign In</h2>
+        <h2 className="uppercase text-[40px] font-semibold">Iniciar Sesión</h2>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-6 justify-center items-center"
@@ -48,7 +48,7 @@ const SignIn = () => {
             </div>
             <div className="flex flex-col h-[60px] w-full justify-between">
               <label htmlFor="password" className=" text-stone-400 h-[25px]">
-                Password
+                Contraseña
               </label>
               <input
                 type="password"
@@ -67,10 +67,10 @@ const SignIn = () => {
           >
             {loader ?
             <Loader /> 
-            : "Login"}
+            : "Entrar"}
           </button>
           <Link to="/register" className="border-b">
-            Or register new account
+            O crear una cuenta
           </Link>
         </form>
       </main>
