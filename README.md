@@ -2,7 +2,7 @@
 
 PlaylistParty es una aplicación que te permite explorar y compartir tus canciones favoritas, crear listas de reproducción personalizadas y enviar dedicatorias a tus amigos. La aplicación se integra con la API de Spotify para buscar canciones, obtener detalles de artistas y gestionar listas de reproducción.
 
-![Aplicación PlaylistParty](./screenshot.png)
+![Aplicación PlaylistParty](./screen.png)
 
 ## Características
 
@@ -35,8 +35,6 @@ Una vez que la aplicación esté en funcionamiento, puedes:
 ### `/register`
 
 - Página pública para registrarse con correo, nombre y contraseña.
-
-![Página de Registro](./screen.png)
 
 ### `/login`
 
