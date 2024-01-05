@@ -36,49 +36,38 @@ Una vez que la aplicación esté en funcionamiento, puedes:
 
 - Página pública para registrarse con correo, nombre y contraseña.
 
-![Página de Registro](./screenshots/register.png)
+![Página de Registro](./screen.png)
 
 ### `/login`
 
 - Página pública para iniciar sesión con correo y contraseña.
 
-![Página de Inicio de Sesión](./screenshots/login.png)
 
 ### `/`
 
 - Página protegida para buscar canciones, ver detalles y agregar a listas de reproducción.
 
-![Página de Inicio](./screenshots/home.png)
-
 ### `/tracks/:id`
 
 - Página protegida para ver detalles de una canción y recomendaciones.
 
-![Página de Detalles de Canción](./screenshots/track-details.png)
 
 ### `/artists/:id`
 
 - Página protegida para ver detalles de un artista y canciones principales.
 
-![Página de Detalles de Artista](./screenshots/artist-details.png)
 
 ### `/playlists`
 
 - Página protegida para ver todas las listas de reproducción del usuario y editarlas.
 
-![Página de Listas de Reproducción](./screenshots/playlists.png)
-
 ### `/playlists/:id`
 
 - Página protegida para editar una lista de reproducción específica.
 
-![Página de Edición de Lista de Reproducción](./screenshots/edit-playlist.png)
-
 ### `/playlists/public/:id`
 
 - Página pública para ver detalles de una lista de reproducción compartida.
-
-![Página de Lista de Reproducción Pública](./screenshots/public-playlist.png)
 
 ## Colaboradores
 
