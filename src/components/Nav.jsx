@@ -25,7 +25,10 @@ const Nav = () => {
   }
 
   const handleModalCreateList = () => {
-    setModalCreateList(!modalCreateList)
+    if(counter>0){
+      setModalCreateList(!modalCreateList)
+    }
+  
     if(modalAccount === true){
       setModalAccount(false)
     }
