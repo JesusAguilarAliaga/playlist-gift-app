@@ -8,6 +8,8 @@ import fetchCrud from "./slices/fetchCrud";
 import newUserModal from "./slices/newUserModal";
 import deleteModal from "./slices/deleteModal";
 import inputsToCreate from "./slices/inputsToCreate";
+import musicPlay from "./slices/musicPlay";
+import listCasette from "./slices/listCasette";
 
 export default configureStore({
     reducer: {
@@ -20,5 +22,7 @@ export default configureStore({
         newUserModal: newUserModal,
         deleteModal: deleteModal,
         inputsToCreate: inputsToCreate,
+        musicPlay: musicPlay,
+        listCasette: listCasette,
     }
 })

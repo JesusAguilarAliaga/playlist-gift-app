@@ -1,11 +1,10 @@
 .warningToast{
-    background: linear-gradient(to right, #787c008a, #6760448a);
+    background: linear-gradient(to right, #9b864f50, #64625c8a);
     backdrop-filter: blur(20px);
     border-radius: 5px;
     color: #ffffff;
     font-family: "Urbanist", sans-serif;
     font-weight: 500;
-    /* Agrega cualquier otro estilo personalizado que desees */
 }
 
 .warningToast .Toastify__progress-bar {

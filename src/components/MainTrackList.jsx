@@ -7,16 +7,30 @@ import { Link } from "react-router-dom"
 import { RiAddCircleLine, RiPlayFill } from "@remixicon/react"
 import { motion } from "framer-motion"
 import { variants } from "../utils/variants"
+import { resetMusic, setArtistsMusic, setExternalUrl, setMusicPlay, setNameMusic } from "../store/slices/musicPlay"
+import { toastWarning } from "../utils/notifications"
 
 const trackAnimate = variants.items
 
 const MainTrackList = ({track, index}) => {
   const [showPopup, setShowPopup] = useState(false)
   const [textPopup ,setTextPopup] = useState("")
-  const distpatch = useDispatch()
+  const dispatch = useDispatch()
 
   const handleAddTrack = () => {
-    distpatch(adToList(track))
+    dispatch(adToList(track))
+  }
+
+  const handlePlay = () => {
+    if(track.preview_url === null){
+      toastWarning("Ups, parece que esta canción no tiene preview")
+      dispatch(resetMusic())
+      return
+    }
+    dispatch(setMusicPlay(track.preview_url))
+    dispatch(setNameMusic(track.name))
+    dispatch(setArtistsMusic(track.artists[0].name))
+    dispatch(setExternalUrl(track.external_urls.spotify))
   }
 
   const onMouseEnter = (text) => {
@@ -40,7 +54,7 @@ const MainTrackList = ({track, index}) => {
           <span>{lastName[0]?.name !== undefined ? `, ${lastName[0]?.name}` : ""}</span>
         </p>
       </div>
-      <RiPlayFill className="text-[22px] relative" onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)}></RiPlayFill>
+      <RiPlayFill className="text-[22px] relative" onClick={handlePlay} onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)}></RiPlayFill>
       <RiAddCircleLine className="text-[22px] mr-2" onClick={handleAddTrack} onMouseEnter={() => onMouseEnter("Agregar a lista")} onMouseLeave={() => setShowPopup(false)}/>
       {showPopup && <PopUpHover popupText={textPopup}/>}
     </motion.li>
