@@ -45,9 +45,9 @@ const Nav = () => {
           <h2>GIFT MUSIC</h2>
         </Link>
         <div className="relative flex gap-8 max-sm:gap-2">
-          <button onClick={handleModalAccount} className={`w-[135px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec] outline-none ${modalAccount ? bg : ""}}`}>Mi CUENTA</button>
+          <button onClick={handleModalAccount} className={`w-[120px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec] outline-none ${modalAccount ? bg : ""}}`}>Mi CUENTA</button>
           <button onClick={handleModalCreateList} className={`h-[35px] px-5 flex items-center gap-2 border-[1px] border-[#edd641ec] rounded-[30px] outline-none ${modalCreateList ? bg : ""}`}>
-            <RiPlayList2Fill className="ri-play-list-2-fill "/>
+            <RiPlayList2Fill/>
             <p className="max-sm:hidden">GRABANDO</p>
             <motion.span key={counter} variants={counterAnimate} initial="initial" animate="animate" className="neon-text min-w-[20px] text-center">{counter}</motion.span>
           </button>

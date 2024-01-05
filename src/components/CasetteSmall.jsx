@@ -1,17 +1,27 @@
 import "../styles/Casette.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RiPencilLine } from "@remixicon/react";
-import { setTitle } from "../store/slices/inputsToCreate";
+import { setMessage, setTitle, setTo } from "../store/slices/inputsToCreate";
 import { motion } from "framer-motion";
 
 const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
   const distpatch = useDispatch();
-  const inputTitleCasette = useSelector((store) => store.inputsToCreate.title);
+  const { title, to, message } = useSelector((store) => store.inputsToCreate);
   
-  const handleFrontInputChange = (e) => {
+  const handleTitleInputChange = (e) => {
     let value = e.target.value
     distpatch(setTitle(value))
   };
+
+  const handleNameInputChange = (e) => {
+    let value = e.target.value
+    distpatch(setTo(value))
+  }
+
+  const handleMessageInputChange = (e) => {
+    let value = e.target.value
+    distpatch(setMessage(value))
+  }
 
   const handleCardFlip = () => {
     setIsFlipped(!isFlipped);
@@ -34,9 +44,10 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
               <input
                 type="text"
                 placeholder="TITULO"
-                value={inputTitleCasette}
+                required
+                value={title}
                 className="w-full h-full bg-transparent outline-none"
-                onChange={handleFrontInputChange}
+                onChange={handleTitleInputChange}
               />
               <RiPencilLine/>
             </div>
@@ -44,13 +55,33 @@ const CasetteSmall = ({ isFlipped, setIsFlipped }) => {
             <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
           </div>
           <div className="backFace absolute h-full w-full">
-            <img
+          <img
               onClick={handleCardFlip}
               src="/images/casetteFront.svg"
               alt="casette"
             />
-            <img className="absolute top-[63px] left-[56px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
-            <img className="absolute top-[63px] right-[58px] size-[40px] animate-spin" src="/images/reel.svg" alt="reel" />
+            <div className="flex items-center absolute top-4 left-[22px] z-10 h-[32px] w-[205px] rounded-sm px-2 bg-[#D9d9d9] font-semibold">
+              <input
+                type="text"
+                required
+                placeholder="PARA:"
+                value={to}
+                className="w-full h-full bg-transparent outline-none"
+                onChange={handleNameInputChange}
+              />
+              <RiPencilLine/>
+            </div>
+            <div className="flex absolute top-[55px] left-[22px] z-10 h-[112px] w-[205px] rounded-sm px-2 bg-[#D9d9d9] font-semibold">
+              <textarea
+                type="text"
+                placeholder="MENSAJE"
+                required
+                value={message}
+                className="textareaScroll resize-none w-full h-full bg-transparent outline-none pr-2"
+                onChange={handleMessageInputChange}
+              />
+              <RiPencilLine className=""/>
+            </div>
           </div>
         </div>
       </motion.div>

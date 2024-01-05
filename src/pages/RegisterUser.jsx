@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { axiosMusic, axiosPlaylist } from "../utils/configAxios";
+import { axiosMusic } from "../utils/configAxios";
 import ContainerAuth from "../components/layouts/ContainerAuth";
 import { useState } from "react";
 import Loader from "../components/Loader";
-import { toastError, toastInfo, toastSuccess, toastWarning } from "../utils/notifications";
-
-// const URL_API = "https://xtrem-party-dev-rgnq.3.us-1.fl0.io"
+import { toastError, toastSuccess, toastWarning } from "../utils/notifications";
 
 const RegisterUser = () => {
   const [loader, setLoader] = useState(false);
@@ -16,16 +14,11 @@ const RegisterUser = () => {
     setLoader(true);
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    console.log(data);
 
-
-    //axiosPlaylist
     axiosMusic
         .post("/api/auth/register", data)
-        .then(({data}) => {
-          console.log(data.message);
+        .then(() => {
           toastSuccess("Cuenta creada con éxito");
-          toastInfo("Ya puedes iniciar sesión");
           navigate("/login");
         })
         .catch((err) => {

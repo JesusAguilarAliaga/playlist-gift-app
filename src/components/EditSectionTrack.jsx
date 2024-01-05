@@ -2,21 +2,23 @@ import { useState } from "react";
 import { formatArtists } from "../utils/FormatArtists";
 import PopUpHover from "./PopUpHover";
 import { useDispatch } from "react-redux";
-import { removeToList } from "../store/slices/addedList";
 import { Link } from "react-router-dom";
 import { RiIndeterminateCircleLine, RiPlayFill } from "@remixicon/react";
 import { motion } from "framer-motion";
 import { variants } from "../utils/variants";
+import { toastWarning } from "../utils/notifications";
+import { resetMusic, setArtistsMusic, setExternalUrl, setMusicPlay, setNameMusic } from "../store/slices/musicPlay";
+import { fetchDeleteTrack } from "../store/slices/fetchCrud";
 
 const trackCasetteAnimate = variants.items
 
-const EditSectionTrack = ({track, index}) => {
+const EditSectionTrack = ({track, index, idPlaylist}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [textPopup, setTextPopup] = useState("");
-  const distpatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const handleAddTrack = () => {
-    distpatch(removeToList(track));
+  const handleRemoveTrack = () => {
+    dispatch(fetchDeleteTrack(track.id, idPlaylist))
   };
 
   const onMouseEnter = (text) => {
@@ -24,11 +26,23 @@ const EditSectionTrack = ({track, index}) => {
     setShowPopup(true);
   };
 
+  const handlePlay = () => {
+    if(track.preview_url === null){
+      toastWarning("Ups, parece que esta canción no tiene preview")
+      dispatch(resetMusic())
+      return
+    }
+    dispatch(setMusicPlay(track.preview_url))
+    dispatch(setNameMusic(track.name))
+    dispatch(setArtistsMusic(track.artists[0].name))
+    dispatch(setExternalUrl(track.external_urls.spotify))
+  }
+
   const artistsName = formatArtists(track.artists).slice(0, 2)
   const lastName = formatArtists(track.artists).slice(2)
 
   return (
-    <motion.li variants={trackCasetteAnimate} initial="hidden" animate="visible" exit="exit" custom={index} className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
+    <motion.li layoutId={track.id} variants={trackCasetteAnimate} initial="hidden" animate="visible" exit="exit" custom={index} className="relative w-full h-[60px] flex gap-5 justify-between items-center hover:bg-[#A284F6]/10 rounded-lg">
       <img
         className="size-[60px] rounded-lg"
         src={track.album.images[2]?.url}
@@ -49,10 +63,11 @@ const EditSectionTrack = ({track, index}) => {
         className="ri-play-fill text-[22px] relative"
         onMouseEnter={() => onMouseEnter("Reproducir")}
         onMouseLeave={() => setShowPopup(false)}
+        onClick={handlePlay}
       />
       <RiIndeterminateCircleLine
         className="ri-indeterminate-circle-line text-[22px] mr-2"
-        onClick={handleAddTrack}
+        onClick={handleRemoveTrack}
         onMouseEnter={() => onMouseEnter("Quitar de la lista")}
         onMouseLeave={() => setShowPopup(false)}
       />

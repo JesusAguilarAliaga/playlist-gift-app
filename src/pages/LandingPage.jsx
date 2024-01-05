@@ -1,6 +1,17 @@
+import { useDispatch} from "react-redux";
 import NavUnprotected from "../components/NavUnprotected"
+import { Navigate } from "react-router-dom";
+import { setTokenUser } from "../store/slices/tokenUserSlice";
 
 const LandingPage = () => {
+  const dispatch = useDispatch()
+
+  const data = window.localStorage.getItem('PLAYLIST_USER')
+  if (data) {
+    dispatch(setTokenUser(JSON.parse(data)));
+    return <Navigate to="/home" />
+  }
+
   return (
     <main className=" bg-black h-screen w-full text-white font-urbanist font-normal">      
       <NavUnprotected/>
@@ -13,12 +24,6 @@ const LandingPage = () => {
               max-sm:text-xl">
             Create a playlist for your friends
           </p>
-          {/* <p className="absolute top-1/2 text-center font-semibold text-4xl text-[#5447ab] 
-              uppercase
-              max-sm:text-xl
-              ">
-            Create a playlist for your friends
-          </p>           */}
         </div>
       </section>
     </main>

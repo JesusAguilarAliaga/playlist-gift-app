@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     title: "",
-    name: "PARA:",
-    message: "MESSAGE",
+    to: "",
+    message: "",
 }
 
 const inputsToCreateSlice = createSlice({
@@ -13,8 +13,8 @@ const inputsToCreateSlice = createSlice({
         setTitle(state, action) {
             state.title = action.payload
         },
-        setName(state, action) {
-            state.name = action.payload
+        setTo(state, action) {
+            state.to = action.payload
         },
         setMessage(state, action) {
             state.message = action.payload
@@ -27,6 +27,6 @@ const inputsToCreateSlice = createSlice({
     },
 })
 
-export const { setTitle, setName, setMessage, resetInputsCreate } = inputsToCreateSlice.actions
+export const { setTitle, setTo, setMessage, resetInputsCreate } = inputsToCreateSlice.actions
 
 export default inputsToCreateSlice.reducer

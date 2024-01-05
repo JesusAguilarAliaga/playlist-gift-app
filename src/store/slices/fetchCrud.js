@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { axiosMusic, axiosPlaylist } from "../../utils/configAxios";
+import { axiosMusic} from "../../utils/configAxios";
 import { toastError, toastInfo, toastSuccess, toastWarning } from "../../utils/notifications";
 import { resetInputsCreate } from "./inputsToCreate";
 import { resetAddedList } from "./addedList";
+import { deleteTrack } from "./listCasette";
 
 const fetchCrudSlice = createSlice({
     name: "fetchCrud",
@@ -27,7 +28,7 @@ const fetchCrudSlice = createSlice({
     },
 })
 
-const { setFetchCrud, setLoader, setError } = fetchCrudSlice.actions
+const { setFetchCrud, setLoader } = fetchCrudSlice.actions
 
 export default fetchCrudSlice.reducer
 
@@ -38,7 +39,6 @@ export const fetchGetAll = (data) => (dispatch) => {
         .get("/api/playlists/me", data)
         .then(({data}) => {
             dispatch(setFetchCrud(data));
-            console.log(data)
         })
         .catch((err) => {
             if(err.response.status === 429) {
@@ -49,19 +49,12 @@ export const fetchGetAll = (data) => (dispatch) => {
         .finally(() => dispatch(setLoader(false)))
 }
 
-export const fetchCreate = (data, token, setModalCreateList) => (dispatch) => {
+export const fetchCreate = (data, setModalCreateList) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosPlaylist
-    // axiosMusic
-        .post("/api/playlists", data, {
-            headers: {
-                Authorization: `JWT ${token}`
-            }
-        })
-        .then(({data}) => {
-            dispatch(fetchGetAll({headers: {
-                Authorization: `JWT ${token}`
-            }}))
+    axiosMusic
+        .post("/api/playlists", data)
+        .then(() => {
+            dispatch(fetchGetAll())
             setModalCreateList(false)
             dispatch(resetInputsCreate())
             dispatch(resetAddedList())
@@ -69,12 +62,11 @@ export const fetchCreate = (data, token, setModalCreateList) => (dispatch) => {
             setTimeout(() => {
                 toastInfo("Puedes seguir editando tu playlist en la sección: Mis Grabaciones")
             }, 1000);
-            console.log(data)
         })
         .catch((err) => {
             console.log(err);
             if(err.response.status === 403) {
-                toastWarning("No puedes crear una playlist vacia")
+                toastWarning("No puedes crear una playlist sin canciones")
             }else{
                 toastError("Error al crear la playlist")
             }
@@ -82,22 +74,14 @@ export const fetchCreate = (data, token, setModalCreateList) => (dispatch) => {
         .finally(() => dispatch(setLoader(false)))
 }
 
-export const fetchDelete = (id, token, navigate) => (dispatch) => {
+export const fetchDelete = (id, navigate) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosPlaylist
-    // axiosMusic
-        .delete(`/api/playlists/${id}`, {
-            headers: {
-                Authorization: `JWT ${token}`
-            }
-        })
-        .then(({data}) => {
-            dispatch(fetchGetAll({headers: {
-                Authorization: `JWT ${token}`
-            }}))
+    axiosMusic
+        .delete(`/api/playlists/${id}`)
+        .then(() => {
+            dispatch(fetchGetAll())
             toastSuccess("Playlist eliminada correctamente")
             navigate(-1)
-            console.log("usuario eliminado" , data)
         })
         .catch((err) => {
             if(err.response.status === 429) {
@@ -110,21 +94,13 @@ export const fetchDelete = (id, token, navigate) => (dispatch) => {
         .finally(() => dispatch(setLoader(false)))
 }
 
-export const fetchUpdate = (id, data, token) => (dispatch) => {
+export const fetchUpdate = (id, data) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosPlaylist
-    // axiosMusic
-        .patch(`/api/playlists/${id}`, data, {
-            headers: {
-                Authorization: `JWT ${token}`
-            }
-        })
-        .then(({data}) => {
-            dispatch(fetchGetAll({headers: {
-                Authorization: `JWT ${token}`
-            }}))
+    axiosMusic
+        .patch(`/api/playlists/${id}`, data)
+        .then(() => {
+            dispatch(fetchGetAll())
             toastSuccess("Playlist actualizada")
-            console.log(data)
         })
         .catch((err) => {
             console.log(err);
@@ -132,6 +108,24 @@ export const fetchUpdate = (id, data, token) => (dispatch) => {
                 toastWarning("Muchas peticiones, espera un momento")
             }else{
                 toastError("Error al actualizar la playlist, intentalo de nuevo")
+            }
+        })
+        .finally(() => dispatch(setLoader(false)))
+}
+
+export const fetchDeleteTrack = (id, idPlaylist) => (dispatch) => {
+    dispatch(setLoader(true))
+    axiosMusic.delete(`api/playlists/${idPlaylist}/tracks/${id}`)
+        .then(() => {
+            toastSuccess("Cancion eliminada correctamente")
+            dispatch(deleteTrack(id))
+        })
+        .catch((err) => {
+            console.log(err);
+            if(err.response.status === 429) {
+                toastWarning("Muchas peticiones, espera un momento")
+            }else{
+                toastError("Error al eliminar la cancion, intentalo de nuevo")
             }
         })
         .finally(() => dispatch(setLoader(false)))

@@ -1,20 +1,13 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ContainerAuth from "../components/layouts/ContainerAuth";
 import { login } from "../store/slices/tokenUserSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 
 const SignIn = () => {
-  const dispatch = useDispatch();
-
-  const navigateTo = useNavigate();
-
   const loader = useSelector((store) => store.tokenUser.loader);
-
-  const tokenUser = useSelector((store) => store.tokenUser.tokenUser.token);
-  if (tokenUser) {
-    return <Outlet />;
-  }
+  const dispatch = useDispatch();
+  const navigateTo = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();

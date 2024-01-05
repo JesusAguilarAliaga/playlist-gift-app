@@ -1,59 +1,60 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { axiosMusic, axiosPlaylist } from "../../utils/configAxios";
+import { axiosMusic } from "../../utils/configAxios";
 import { toastError } from "../../utils/notifications";
 
 
-const initialState = { email: "", name: "", token: "" }
+const storageUser = localStorage.getItem("PLAYLIST_USER");
+let initialState;
 
-const storageUser = localStorage.getItem("PLAYLIST_USER") 
-        ? JSON.parse(localStorage.getItem("PLAYLIST_USER")) 
-        : initialState
+if (storageUser) {
+    initialState = JSON.parse(storageUser);
+} else {
+    initialState = { email: "", name: "", token: "" };
+}
 
 const tokenUserSlice = createSlice({
     name: "tokenUser",
     initialState: {
-        tokenUser: storageUser,
+        tokenUser: initialState,
         loader: false,
     },
     reducers: {
         setTokenUser: (state, action) => {
             const newTokenUser = action.payload
             localStorage.setItem("PLAYLIST_USER", JSON.stringify(newTokenUser))
-            return {... state, tokenUser: newTokenUser}
+            return { ...state, tokenUser: newTokenUser }
         },
         logout: (state) => {
             localStorage.removeItem("PLAYLIST_USER")
-            return {...state , tokenUser: initialState}
+            window.location.reload()
+            return { ...state, tokenUser: initialState }
         },
         setLoader: (state, action) => {
             const newLoader = action.payload
             return { ...state, loader: newLoader }
         }
     },
-}) 
+})
 
 export const { setTokenUser, logout, setLoader } = tokenUserSlice.actions
 
 export default tokenUserSlice.reducer
 
 export const login = (data, navigateTo) => (dispatch) => {
-    
     dispatch(setLoader(true))
-    // axiosMusic
-    axiosPlaylist
+    axiosMusic
         .post("/api/auth/login", data)
-        .then(({data}) => {
+        .then(({ data }) => {
             dispatch(setTokenUser(data));
-            console.log(data)
             navigateTo("/home");
         })
         .catch((err) => {
-            if(err.response.status === 403){
+            if (err.response.status === 403) {
                 toastError("Credenciales incorrectas")
-            }else{
+            } else {
                 toastError("Error al iniciar sesión, intentalo de nuevo")
             }
             console.log(err)
-    })
-    .finally(() => dispatch(setLoader(false)))
+        })
+        .finally(() => dispatch(setLoader(false)))
 }

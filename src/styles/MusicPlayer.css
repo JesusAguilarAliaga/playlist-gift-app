@@ -1,0 +1,114 @@
+.rhap_container {
+    padding-top: 55px;
+    padding-bottom: 5px;
+    z-index: 50;
+    height: 110px;
+    width: 300px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    backdrop-filter: blur(60px);
+    background-color: rgba(61,46,149,0.35);
+    background-position: top center;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: "Urbanist", sans-serif;
+}
+
+.rhap_progress-indicator {
+    opacity: 0;
+    top: -3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.rhap_progress-bar, .rhap_download-progress {
+    width: 170px;
+    height: 7px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#rhap_current-time{
+    color: white;
+}
+
+.rhap_total-time{
+    display: none;
+}
+
+.rhap_main{
+    height: 30px;
+    flex: auto;
+    padding-bottom: 6px;
+}
+
+.rhap_progress-section{
+    height: 20px;
+    flex: auto;
+}
+
+.rhap_progress-filled{
+    background: white;
+}
+
+.rhap_download-progress{
+    display: none;
+}
+
+.rhap_progress-indicator:hover{
+    opacity: 1;
+}
+
+.rhap_progress-indicator:active{
+    opacity: 1;
+}
+
+.rhap_volume-indicator{
+    top: -3px;
+    width: 11px;
+    height: 11px;
+}
+
+.iconify {
+    color: white;
+}
+
+.rhap_play-pause-button{
+    font-size: 55px;
+    width: 55px;
+    height: 55px;
+}
+
+.rhap_main-controls{
+    position: absolute;
+    display: flex;
+    flex: content;
+    justify-content: center;
+    align-items: center;
+    right: 2px;
+    bottom: 1px;
+    width: 60px;
+    height: 60px;
+}
+
+.rhap_volume-container{
+    left: calc(50% - 55px);
+    width: 100px;
+    position: absolute;
+}
+
+.rhap_volume-button{
+    font-size: 20px;
+    margin-right: 0;
+    width: 20px;
+    height: 20px;
+}
+
+
+@media (width < 640px) {
+    .rhap_container {
+        left: calc(50% - 150px);
+        bottom: 10px;
+    }
+}
