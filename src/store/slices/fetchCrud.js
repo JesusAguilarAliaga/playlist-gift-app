@@ -34,8 +34,7 @@ export default fetchCrudSlice.reducer
 
 export const fetchGetAll = (data) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosPlaylist
-    // axiosMusic
+    axiosMusic
         .get("/api/playlists/me", data)
         .then(({data}) => {
             dispatch(setFetchCrud(data));
