@@ -33,7 +33,8 @@ export default fetchCrudSlice.reducer
 
 export const fetchGetAll = (data) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosMusic
+    axiosPlaylist
+    // axiosMusic
         .get("/api/playlists/me", data)
         .then(({data}) => {
             dispatch(setFetchCrud(data));
@@ -50,7 +51,8 @@ export const fetchGetAll = (data) => (dispatch) => {
 
 export const fetchCreate = (data, token, setModalCreateList) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosMusic
+    axiosPlaylist
+    // axiosMusic
         .post("/api/playlists", data, {
             headers: {
                 Authorization: `JWT ${token}`
@@ -82,7 +84,8 @@ export const fetchCreate = (data, token, setModalCreateList) => (dispatch) => {
 
 export const fetchDelete = (id, token, navigate) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosMusic
+    axiosPlaylist
+    // axiosMusic
         .delete(`/api/playlists/${id}`, {
             headers: {
                 Authorization: `JWT ${token}`
@@ -109,7 +112,8 @@ export const fetchDelete = (id, token, navigate) => (dispatch) => {
 
 export const fetchUpdate = (id, data, token) => (dispatch) => {
     dispatch(setLoader(true))
-    axiosMusic
+    axiosPlaylist
+    // axiosMusic
         .patch(`/api/playlists/${id}`, data, {
             headers: {
                 Authorization: `JWT ${token}`

@@ -37,9 +37,10 @@ export const { setTokenUser, logout, setLoader } = tokenUserSlice.actions
 export default tokenUserSlice.reducer
 
 export const login = (data, navigateTo) => (dispatch) => {
-    // axiosMusic
+    
     dispatch(setLoader(true))
-    axiosMusic
+    // axiosMusic
+    axiosPlaylist
         .post("/api/auth/login", data)
         .then(({data}) => {
             dispatch(setTokenUser(data));

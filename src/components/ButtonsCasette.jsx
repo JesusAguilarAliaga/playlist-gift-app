@@ -10,7 +10,7 @@ const ButtonsCasette = ({id}) => {
   const inputNameCasette = useSelector((store) => store.inputNameCasette)
   const inputTitleCasette = useSelector((store) => store.inputTitleCasette)
   const inputMessageCasette = useSelector((store) => store.inputMessageCasette)
-  const tokenUser =useSelector((store) => store.tokenUser.tokenUser)
+  const tokenUser = useSelector((store) => store.tokenUser.tokenUser)
   const dispatch = useDispatch()
   const [textPopup, setTextPopup] = useState("")
   const [savePopup, setSavePopup] = useState(false)

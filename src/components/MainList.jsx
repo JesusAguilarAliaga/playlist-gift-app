@@ -18,8 +18,8 @@ const MainList = () => {
   const tokenUser = useSelector((store) => store.tokenUser.tokenUser);
 
   useEffect(() => {
-    //axiosPlaylist
-    axiosMusic
+    axiosPlaylist
+    // axiosMusic
       .get(
         "/api/tracks/recommendations?seed_genres=latino,reggaeton&limit=20",
         {
