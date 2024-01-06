@@ -52,10 +52,11 @@ const MainList = () => {
         {showSettings ? (
             <RiCloseLine
             onClick={() => setShowSettings(!showSettings)}
+            className="hover:text-[#f68484]"
             />
         ) : (
             <RiListSettingsFill
-            className="select-none"
+            className="select-none hover:text-[#A284F6]"
             onClick={() => setShowSettings(!showSettings)}
             />
         )}

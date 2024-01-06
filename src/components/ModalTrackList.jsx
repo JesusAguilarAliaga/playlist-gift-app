@@ -1,5 +1,3 @@
-import { useState } from "react";
-import PopUpHover from "./PopUpHover";
 import { formatArtists } from "../utils/FormatArtists";
 import { useDispatch } from "react-redux";
 import { removeToList } from "../store/slices/addedList";
@@ -8,17 +6,10 @@ import { RiIndeterminateCircleLine } from "@remixicon/react";
 import { motion } from "framer-motion";
 
 const ModalTrackList = ({ track }) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [textPopup, setTextPopup] = useState("");
   const distpatch = useDispatch();
 
   const handleAddTrack = () => {
     distpatch(removeToList(track));
-  };
-
-  const onMouseEnter = (text) => {
-    setTextPopup(text);
-    setShowPopup(true);
   };
 
   const artistsName = formatArtists(track.artists).slice(0, 2)
@@ -41,12 +32,9 @@ const ModalTrackList = ({ track }) => {
         </p>
       </div>
       <RiIndeterminateCircleLine
-        className="ri-indeterminate-circle-line text-[22px] mr-2"
+        className="ri-indeterminate-circle-line text-[22px] mr-2 hover:text-[#f6849b]"
         onClick={handleAddTrack}
-        onMouseEnter={() => onMouseEnter("Quitar de lista")}
-        onMouseLeave={() => setShowPopup(false)}
       ></RiIndeterminateCircleLine>
-      {showPopup && <PopUpHover popupText={textPopup} />}
     </motion.li>
   );
 };

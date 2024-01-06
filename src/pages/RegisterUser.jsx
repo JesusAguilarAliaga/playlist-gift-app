@@ -7,7 +7,7 @@ import { toastError, toastSuccess, toastWarning } from "../utils/notifications";
 
 const RegisterUser = () => {
   const [loader, setLoader] = useState(false);
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   
   const handleSubmit = (e) => {
     e.preventDefault();

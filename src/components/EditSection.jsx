@@ -40,7 +40,7 @@ const EditSection = () => {
       {loader ? <Loader /> 
       :<>
       <CasetteMain changeSide={changeSide} setChangeSide={setChangeSide} id={id}/>
-      <motion.button layoutId="buttonChangeSide" className=" flex  items-center justify-around mb-4 px-3 gap-2 w-[136px] h-[37px] border-2 rounded-[33px]" onClick={() => setChangeSide(!changeSide)}>{changeSide ? "LADO A" : "LADO B"}<RiArrowLeftRightLine className="size-[20px]"/></motion.button>
+      <motion.button layoutId="buttonChangeSide" className=" flex  items-center justify-around mb-4 px-3 gap-2 w-[136px] h-[37px] border-2 rounded-[33px] hover:bg-[#A284F6] hover:border-transparent" onClick={() => setChangeSide(!changeSide)}>{changeSide ? "LADO A" : "LADO B"}<RiArrowLeftRightLine className="size-[20px]"/></motion.button>
       <motion.ul layoutId="listCasetteInfo" className="w-full flex flex-col gap-[20px]">
       {listTracks.map((track, index) => (
         <EditSectionTrack key={track.id} track={track} index={index} idPlaylist={id}/>

@@ -33,6 +33,8 @@ const CreateListModal = ({setModalCreateList, modalCreateList}) => {
     }else if (to, message === ""){
       setIsFlipped(true)
       toastWarning("Ponle un destinatario y un mensaje")
+    }else if(addedList.length === 0){
+      toastWarning("Agrega al menos una canción")
     }
     else{
       dispatch(fetchCreate(data, setModalCreateList))
@@ -50,10 +52,12 @@ const CreateListModal = ({setModalCreateList, modalCreateList}) => {
 
     // Agregar el event listener al documento cuando el componente se monta
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
 
     return () => {
       // Eliminar el event listener cuando el componente se desmonta
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [modalCreateList]);
 
@@ -65,7 +69,7 @@ const CreateListModal = ({setModalCreateList, modalCreateList}) => {
           <ModalTrackList key={track.id} track={track}/>
         ))}
       </motion.ul>
-      <motion.button layoutId="button" onClick={handleCreateFetch}  className="mt-4 w-[136px] h-[37px] border-2 rounded-[33px]" type="button">{loader ? <Loader /> : "CREAR"}</motion.button>
+      <motion.button layoutId="button" onClick={handleCreateFetch}  className="mt-4 w-[136px] h-[37px] border-2 rounded-[33px] hover:bg-white/20" type="button">{loader ? <Loader /> : "CREAR"}</motion.button>
     </motion.section>
   )
 }

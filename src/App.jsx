@@ -14,19 +14,13 @@ import "react-toastify/dist/ReactToastify.css"
 import "./index.css"
 import "./styles/toastify.css";
 import MusicPlayer from "./components/MusicPlayer"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import ScrollToTop from "./components/layouts/ScrollToTop"
 import ProtectedRoutes from "./pages/ProtectedRoutes"
-import { useEffect } from "react"
-import { fetchGetAll } from "./store/slices/fetchCrud"
 
 function App() {
   const musicState = useSelector((store) => store.musicPlay.isPlaying)
-  const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchGetAll())
-  }, [])
 
   return (
     <>

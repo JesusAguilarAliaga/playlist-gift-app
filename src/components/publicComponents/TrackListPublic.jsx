@@ -1,6 +1,4 @@
-import { useState } from "react"
 import { formatArtists } from "../../utils/FormatArtists"
-import PopUpHover2 from "../PopUpHover2"
 import { RiPlayFill } from "@remixicon/react"
 import { motion } from "framer-motion"
 import { variants } from "../../utils/variants"
@@ -11,16 +9,9 @@ import { useDispatch } from "react-redux"
 const animation = variants.items
 
 const TrackListPublic = ({track, index}) => {
-  const [showPopup, setShowPopup] = useState(false)
-  const [textPopup ,setTextPopup] = useState("")
   const dispatch = useDispatch()
 
   const artists = formatArtists(track.artists)
-
-  const onMouseEnter = (text) => {
-    setTextPopup(text)
-    setShowPopup(true)
-  }
 
   const handlePlay = () => {
     if(track.preview_url === null){
@@ -46,7 +37,7 @@ const TrackListPublic = ({track, index}) => {
           ))}
         </p>
       </div>
-      <button onClick={handlePlay} onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)} className="text-[22px] relative pr-1">{showPopup && <PopUpHover2 popupText={textPopup}/>}<RiPlayFill /></button>
+      <RiPlayFill onClick={handlePlay} className="text-[22px] relative mr-2 hover:text-[#A284F6] hover:border-2 hover:border-[#A284F6] hover:rounded-full" />
     </motion.li>
   )
 }

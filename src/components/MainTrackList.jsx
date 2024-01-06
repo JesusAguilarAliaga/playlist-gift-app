@@ -1,5 +1,3 @@
-import { useState } from "react"
-import PopUpHover from "./PopUpHover"
 import { formatArtists } from "../utils/FormatArtists"
 import { useDispatch } from "react-redux"
 import { adToList } from "../store/slices/addedList"
@@ -13,8 +11,6 @@ import { toastWarning } from "../utils/notifications"
 const trackAnimate = variants.items
 
 const MainTrackList = ({track, index}) => {
-  const [showPopup, setShowPopup] = useState(false)
-  const [textPopup ,setTextPopup] = useState("")
   const dispatch = useDispatch()
 
   const handleAddTrack = () => {
@@ -33,11 +29,6 @@ const MainTrackList = ({track, index}) => {
     dispatch(setExternalUrl(track.external_urls.spotify))
   }
 
-  const onMouseEnter = (text) => {
-    setTextPopup(text)
-    setShowPopup(true)
-  }
-
   const artistsName = formatArtists(track.artists).slice(0, 2)
   const lastName = formatArtists(track.artists).slice(2)
 
@@ -54,9 +45,8 @@ const MainTrackList = ({track, index}) => {
           <span>{lastName[0]?.name !== undefined ? `, ${lastName[0]?.name}` : ""}</span>
         </p>
       </div>
-      <RiPlayFill className="text-[22px] relative" onClick={handlePlay} onMouseEnter={() => onMouseEnter("Reproducir")} onMouseLeave={() => setShowPopup(false)}></RiPlayFill>
-      <RiAddCircleLine className="text-[22px] mr-2" onClick={handleAddTrack} onMouseEnter={() => onMouseEnter("Agregar a lista")} onMouseLeave={() => setShowPopup(false)}/>
-      {showPopup && <PopUpHover popupText={textPopup}/>}
+      <RiPlayFill className="text-[22px] relative hover:text-[#A284F6] hover:border-2 hover:border-[#A284F6] hover:rounded-full" onClick={handlePlay}></RiPlayFill>
+      <RiAddCircleLine className="text-[22px] mr-2 hover:text-[#A284F6]" onClick={handleAddTrack}/>
     </motion.li>
   )
 }

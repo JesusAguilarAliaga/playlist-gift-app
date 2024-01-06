@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { RiPlayList2Fill } from "@remixicon/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { variants } from "../utils/variants"
+import { toastInfo } from "../utils/notifications"
 
 const counterAnimate = variants.counter
 let bg = "bg-gradient-to-r  from-[#886AE2] from-[43.66%] to-[#A284F6] to-[116.16%]"
@@ -27,6 +28,8 @@ const Nav = () => {
   const handleModalCreateList = () => {
     if(counter>0){
       setModalCreateList(!modalCreateList)
+    }else{
+      toastInfo("Agrega alguna cancion para empezar a editarla")
     }
   
     if(modalAccount === true){
@@ -42,11 +45,11 @@ const Nav = () => {
     <nav className="sticky top-0 z-30 w-full flex justify-center px-20 h-[69px] bg-gradient-to-r from-[rgba(61,46,149,0.35)] to-[#3D2E95] font-semibold max-lg:px-10 max-sm:px-4 backdrop-blur-3xl"> 
       <div className="w-full h-full max-w-[1440px] flex justify-between items-center">
         <Link to={"/home"}>
-          <h2>GIFT MUSIC</h2>
+          <h2 className="hover:text-[#A284F6]">GIFT MUSIC</h2>
         </Link>
         <div className="relative flex gap-8 max-sm:gap-2">
-          <button onClick={handleModalAccount} className={`w-[120px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec] outline-none ${modalAccount ? bg : ""}}`}>Mi CUENTA</button>
-          <button onClick={handleModalCreateList} className={`h-[35px] px-5 flex items-center gap-2 border-[1px] border-[#edd641ec] rounded-[30px] outline-none ${modalCreateList ? bg : ""}`}>
+          <button onClick={handleModalAccount} className={`w-[120px] h-[35px] rounded-[30px] border-[1px] border-[#edd641ec] outline-none ${modalAccount ? bg : ""} hover:${bg}`}>Mi CUENTA</button>
+          <button onClick={handleModalCreateList} className={`h-[35px] px-5 flex items-center gap-2 border-[1px] border-[#edd641ec] rounded-[30px] outline-none ${modalCreateList ? bg : ""} hover:${bg}`}>
             <RiPlayList2Fill/>
             <p className="max-sm:hidden">GRABANDO</p>
             <motion.span key={counter} variants={counterAnimate} initial="initial" animate="animate" className="neon-text min-w-[20px] text-center">{counter}</motion.span>

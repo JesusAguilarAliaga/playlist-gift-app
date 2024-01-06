@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { formatArtists } from "../utils/FormatArtists";
-import PopUpHover from "./PopUpHover";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { RiIndeterminateCircleLine, RiPlayFill } from "@remixicon/react";
@@ -13,17 +11,10 @@ import { fetchDeleteTrack } from "../store/slices/fetchCrud";
 const trackCasetteAnimate = variants.items
 
 const EditSectionTrack = ({track, index, idPlaylist}) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [textPopup, setTextPopup] = useState("");
   const dispatch = useDispatch();
 
   const handleRemoveTrack = () => {
     dispatch(fetchDeleteTrack(track.id, idPlaylist))
-  };
-
-  const onMouseEnter = (text) => {
-    setTextPopup(text);
-    setShowPopup(true);
   };
 
   const handlePlay = () => {
@@ -60,18 +51,13 @@ const EditSectionTrack = ({track, index, idPlaylist}) => {
         </p>
       </div>
       <RiPlayFill
-        className="ri-play-fill text-[22px] relative"
-        onMouseEnter={() => onMouseEnter("Reproducir")}
-        onMouseLeave={() => setShowPopup(false)}
+        className="ri-play-fill text-[22px] relative hover:text-[#A284F6] hover:border-2 hover:border-[#A284F6] hover:rounded-full"
         onClick={handlePlay}
       />
       <RiIndeterminateCircleLine
-        className="ri-indeterminate-circle-line text-[22px] mr-2"
+        className="ri-indeterminate-circle-line text-[22px] mr-2 hover:text-[#f6849b]"
         onClick={handleRemoveTrack}
-        onMouseEnter={() => onMouseEnter("Quitar de la lista")}
-        onMouseLeave={() => setShowPopup(false)}
       />
-      {showPopup && <PopUpHover popupText={textPopup} />}
     </motion.li>
   );
 };

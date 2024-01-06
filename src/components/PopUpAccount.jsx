@@ -26,10 +26,12 @@ const PopUpAccount = ({ modalAccount, setModalAccount }) => {
     };
     // Agregar el event listener al documento cuando el componente se monta
     document.addEventListener("mousedown", handleClickOutside);
-    
+    document.addEventListener("touchstart", handleClickOutside);
+
     return () => {
       // Eliminar el event listener cuando el componente se desmonta
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [modalAccount]);
 

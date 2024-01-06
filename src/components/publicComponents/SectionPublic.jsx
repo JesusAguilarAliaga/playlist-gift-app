@@ -21,7 +21,7 @@ const SectionPublic = ({ publicData, loading }) => {
           <motion.button
             variants={animation} initial="initial" animate="animate"
             layoutId="buttonChangeSidePublic"
-            className="flex items-center justify-around mb-4 px-3 gap-2 w-[136px] h-[37px] border-2 rounded-[33px]"
+            className="flex items-center justify-around mb-4 px-3 gap-2 w-[136px] h-[37px] border-2 rounded-[33px] hover:bg-[#A284F6] hover:border-transparent"
             onClick={() => setChangeSide(!changeSide)}
           >
             {changeSide ? "LADO A" : "LADO B"}
